@@ -11,3 +11,15 @@
   font-family: "Montaga";
   src: url("./fonts/Montaga.ttf");
 }
+
+@layer components {
+  .custom-input {
+    width: 200px;
+    margin-left: 20px;
+    background: theme('colors.transparent');
+    border: none;
+    border-bottom: 1px solid theme('colors.black');
+    color: theme('colors.black');
+    filter: invert(1);
+  }
+}
