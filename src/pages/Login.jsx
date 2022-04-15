@@ -1,13 +1,13 @@
 import React from 'react'
+import Header from '../components/Header'
 import LoginForm from '../components/LoginForm'
 
 const Login = () => {
   return (
-    <div className='flex flex-col flex-grow items-center justify-center bg-marron'>
-
+    <main className='flex flex-col flex-grow items-center justify-center bg-marron'>
+      <Header/>
       <LoginForm/>
-
-    </div>
+    </main>
   )
 }
 

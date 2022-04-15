@@ -22,4 +22,10 @@
     color: theme('colors.black');
     filter: invert(1);
   }
+  .custom-flex-col {
+    flex: 0 0 100%;
+  }
+  .custom-flex-row {
+    flex: 0 0 0;
+  }
 }

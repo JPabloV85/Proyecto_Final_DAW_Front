@@ -4,11 +4,15 @@ import { useNavigate } from 'react-router-dom'
 const LoginForm = () => {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [error, setError] = React. useState(null);
+    const [error, setError] = React.useState(null);
     const navigate = useNavigate();
 
     const login = (e) => {
         e.preventDefault();
+        
+        //TODO prueba navigate
+        navigate("/main");
+
         if (!validate()) return;
         
         fetch("http://127.0.0.1:5000/login", {
@@ -25,6 +29,7 @@ const LoginForm = () => {
         .then((response) => {
             if(response.ok){
                 localStorage.setItem("access_token", response.json().access_token);
+                localStorage.setItem("username", username);
                 navigate("/main");
             }
         })

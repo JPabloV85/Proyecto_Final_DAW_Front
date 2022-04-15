@@ -8,7 +8,7 @@ const RegisterForm = () => {
     const [password, setPassword] = React.useState("");
     const [confirm, setConfirm] = React.useState("");
     const [birth, setBirthDate] = React.useState("");
-    const [error, setError] = React. useState(null)
+    const [error, setError] = React.useState(null)
     const navigate = useNavigate();
 
     const submit = (e) => {        
@@ -59,7 +59,7 @@ const RegisterForm = () => {
             setError("Your password must contain 6 or more characters.");
             return
           }
-        if (password != confirm) {
+        if (password !== confirm) {
             setError("Fields Password and Confirm do not match.");
             return false;
         }
@@ -96,14 +96,15 @@ const RegisterForm = () => {
         onSubmit={submit}
         className="flex flex-col items-end text-white font-montaga">
 
-        <h1 className="self-center mb-16 text-5xl text-amarillo-claro ">
+        <h1 className="self-center mb-10 text-5xl text-amarillo-claro ">
             Sign up
         </h1>
         {
-        error && (
-            <div className='self-center -mt-5 mb-7 text-xl text-amarillo-claro'>
-                {error}
-            </div>)
+            error && (
+                <div className='self-center -mt-5 mb-7 text-xl text-amarillo-claro'>
+                    {error}
+                </div>
+            )
         } 
         <fieldset className='mb-4'>
             <label htmlFor="username" className='text-xl lg:text-2xl'>
@@ -188,7 +189,7 @@ const RegisterForm = () => {
                 className="custom-input border-b-0 invert-0 text-white lg:w-64"
             />
         </fieldset>
-        <button type="submit" className='mt-10 text-3xl text-amarillo-claro hover:underline'>
+        <button type="submit" className='mt-4 text-3xl text-amarillo-claro hover:underline'>
             Send
         </button>
     </form>

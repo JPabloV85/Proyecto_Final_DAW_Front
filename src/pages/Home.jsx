@@ -4,25 +4,35 @@ import LogoBlanco from '../components/LogoBlanco';
 
 const Main = () => {
   return (
-    <div className='flex flex-col flex-grow items-center bg-marron text-amarillo-claro font-montaga 
-          xl:w-1/2 xl:bg-transparent xl:bg-gradient-to-r from-marron via-marron'>
+    <main className='flex flex-col flex-grow items-center bg-marron text-amarillo-claro font-montaga 
+          xl:w-3/4 xl:items-start xl:bg-transparent xl:bg-gradient-to-r from-marron via-marron'>
 
-      <Link to='/login' className='self-end pr-10 pt-10 text-2xl hover:underline 
-                      lg:text-4xl 
-                      xl:self-start xl:pl-10'>Sign in</Link>
+      <Link to='/login' className='self-end mr-10 mt-10 text-2xl hover:underline 
+                        lg:text-4xl 
+                        xl:self-start xl:ml-10'>
+          Sign in
+      </Link>
 
-      <LogoBlanco aspect="w-full max-w-xl mt-10 lg:mt-0"/>
+      <div className='flex flex-col items-center'>
+        <LogoBlanco aspect="w-full max-w-lg mt-16 lg:mt-8"/>
 
-      <h1 className='px-5 font-cylburn text-amarillo-claro text-7xl 
-        lg:text-8xl lg:-mt-14 
-        xl:ml-3'>Winning Horse</h1>
+        <h1 className='px-5 -mt-6 font-cylburn text-amarillo-claro text-7xl 
+          lg:text-8xl
+          xl:ml-3 xl:-mt-8'>
+            Winning Horse
+        </h1>
 
-      <p className='px-5 mt-6 text-center text-white text-xl 
-        lg:text-2xl
-        xl:'>Manage your horse racing bets the easiest way possible</p>
-        
-      <Link to="/register" className='mt-10 text-4xl hover:underline lg:text-5xl'>Join us</Link>
-    </div>
+        <p className='px-5 mt-6 text-center text-white text-xl 
+          lg:text-2xl
+          xl:ml-4'>
+            Manage your horse racing bets the easiest way possible
+        </p>
+          
+        <Link to="/register" className='mt-10 text-4xl hover:underline lg:text-5xl'>
+          Join us
+        </Link>
+      </div>
+    </main>
   )
 }
 

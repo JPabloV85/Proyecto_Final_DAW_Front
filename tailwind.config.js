@@ -17,6 +17,10 @@ module.exports = {
       },
       screens: {
         'desktop_full': '1400px',
+      },
+      maxWidth: {
+        'small': '200px',
+        'very-small': '70px'
       }
     },
   },
