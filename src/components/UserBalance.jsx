@@ -32,7 +32,7 @@ const UserBalance = () => {
 
 
   return (
-    <div className='custom-flex-col self-center flex flex-col items-center 
+    <div className='custom-flex-col self-center flex flex-col items-center font-montaga text-xl
         xl:custom-flex-row xl:flex-row xl:mr-20 xl:mt-3'>
         <img src={image} alt="client_foto" 
             className='max-w-very-small mb-2 rounded-lg border-4 border-amarillo-claro 

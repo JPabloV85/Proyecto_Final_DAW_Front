@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import LogoBlanco from '../components/LogoBlanco';
+import LogoBlanco from './LogoBlanco';
 
-const Main = () => {
+const Home = () => {
   return (
     <main className='flex flex-col flex-grow items-center bg-marron text-amarillo-claro font-montaga 
           xl:w-3/4 xl:items-start xl:bg-transparent xl:bg-gradient-to-r from-marron via-marron'>
@@ -36,4 +36,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default Home
