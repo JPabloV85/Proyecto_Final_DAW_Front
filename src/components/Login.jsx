@@ -9,15 +9,10 @@ const Login = () => {
 
     const login = (e) => {
         e.preventDefault();
-        
-        //TODO provisional prueba navigate
-        navigate("/main/my_bets");
-
         if (!validate()) return;
-        
+
         fetch("http://127.0.0.1:5000/login", {
             headers:{
-                "Accept": "application/json",
                 "Content-Type": "application/json"
             },
             method: "POST",
@@ -26,14 +21,21 @@ const Login = () => {
                 password: password
               })
         })
-        .then((response) => {
-            if(response.ok){
-                localStorage.setItem("access_token", response.json().access_token);
-                localStorage.setItem("username", username);
-                navigate("/main/my_bets");
+        .then(response => response.json())
+        .then(data => {
+            if (data?.error) {
+                setError(data?.message);
+                return
             }
+            localStorage.setItem("access_token", data?.access_token);
+            localStorage.setItem("username", username);
+            alert("Login successful!");
+            navigate("/main/my_bets");
         })
-        .catch((error) => alert(error));
+        .catch(error => {
+            setError(error);
+            alert(error);
+        });
     }
 
     function validate() {

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
     const [username, setUsername] = React.useState("");
@@ -9,7 +8,6 @@ const Register = () => {
     const [confirm, setConfirm] = React.useState("");
     const [birth, setBirthDate] = React.useState("");
     const [error, setError] = React.useState(null);
-    const navigate = useNavigate();
 
     const submit = (e) => {        
         e.preventDefault();        
@@ -17,7 +15,6 @@ const Register = () => {
 
         fetch("http://127.0.0.1:5000/api/client", {
             headers:{
-                "Accept": "application/json",
                 "Content-Type": "application/json"
             },
             method: "POST",
@@ -26,15 +23,19 @@ const Register = () => {
                 email: email,
                 cif: nif,
                 password: password,
-              })
+            })
         })
-        .then((response) => {
-            if(response.ok){
-                alert("Registration successful!");
-                navigate("/main/my_bets");
+        .then(response => {
+            if(response.ok) alert("Registration successful!");
+            if(response.json()?.error) {
+                setError(response.json()?.message);
+                return
             }
         })
-        .catch((error) => alert(error));
+        .catch(error => {
+            setError(error);
+            alert(error);
+        });
     }
 
     function validate() {

@@ -8,8 +8,7 @@ const Main = (props) => {
   
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
-  
-  /* Esto sirve para cuando entras en /main sin estar logeado te devuelve a /login
+
   React.useEffect(() => {
     if (token === "undefined" || token === null) {
       alert("You are not logged in");
@@ -17,7 +16,6 @@ const Main = (props) => {
     }
       
   }, [token, navigate]);
-  */
 
   return (
     <main className='flex-grow bg-marron font-montaga'>
