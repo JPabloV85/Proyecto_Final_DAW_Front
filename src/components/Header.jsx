@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import BurgerMenu from './BurgerMenu'
 
 const Header = (props) => {
-    if (props.currentPath !== "/") {
+    if (props.path !== "/") {
         return (
             <header className='flex flex-wrap justify-between items-center fixed inset-x-0 top-0 text-amarillo-claro'>
                 <div className='flex justify-between items-center'>
@@ -19,23 +19,23 @@ const Header = (props) => {
                     </p>
                 </div>
                 {
-                    props.currentPath === "/main" && (
-                        <BurgerMenu/>
+                    props.path.includes("/main") && (
+                        <BurgerMenu path={props.path}/>
                     )
                 }
                 {
-                    props.currentPath === "/login" ? 
+                    props.path === "/login" ? 
                     <Link to='/register' className='self-center mr-5 text-xl font-montaga hover:underline 
                                 lg:text-3xl lg:mr-20'>
                             Sign up
                     </Link> 
-                    : 
-                    props.currentPath === "/register" ? 
+                    :
+                    props.path === "/register" ? 
                     <Link to='/login' className='self-center mr-5 text-xl font-montaga hover:underline 
                                 lg:text-3xl lg:mr-20'>
                             Sign in
                     </Link> 
-                    :     
+                    :
                     <UserBalance/>
                 }
             </header>

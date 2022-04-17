@@ -11,7 +11,7 @@ const Login = () => {
         e.preventDefault();
         
         //TODO provisional prueba navigate
-        navigate("/main");
+        navigate("/main/my_bets");
 
         if (!validate()) return;
         
@@ -30,7 +30,7 @@ const Login = () => {
             if(response.ok){
                 localStorage.setItem("access_token", response.json().access_token);
                 localStorage.setItem("username", username);
-                navigate("/main");
+                navigate("/main/my_bets");
             }
         })
         .catch((error) => alert(error));

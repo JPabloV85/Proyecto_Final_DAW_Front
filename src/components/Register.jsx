@@ -31,7 +31,7 @@ const Register = () => {
         .then((response) => {
             if(response.ok){
                 alert("Registration successful!");
-                navigate("/main");
+                navigate("/main/my_bets");
             }
         })
         .catch((error) => alert(error));

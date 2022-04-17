@@ -1,12 +1,12 @@
 import './App.css';
 import React from 'react' 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './components/Home';
-import Footer from './components/Footer';
-import Main from './components/Main';
 import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
+import Main from './components/Main';
 
 function App() {
 
@@ -38,13 +38,14 @@ function App() {
   return (
     <div id='page' className='bg-fondo_caballo bg-cover h-screen w-screen flex flex-col'>
       <BrowserRouter>
-        <Header currentPath={currentPath}/>
+        <Header path={currentPath}/>
 
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/main" element={<Main/>}/>
+          <Route path="/main/my_bets" element={<Main section={"/my_bets"}/>}/>
+          <Route path="/main/new_bet" element={<Main section={"/new_bet"}/>}/>
         </Routes>
 
         <Footer/>
