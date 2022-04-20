@@ -14,22 +14,15 @@ const BurgerMenu = (props) => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("username");
   }
-
-  /* TODO
-    meter en los links del menu los paths a las tablas
-    /main/my_bets
-    /main/new_bet
-    /main/profile o directamente /profile
-  */
  
   return (
-    <div className='text-3xl xl:hidden'>
+    <div className='text-3xl lg:hidden'>
       <FontAwesomeIcon icon={faBars} onClick={showMenu}
         className='mr-5 cursor-pointer'
       />
       <nav className={
         active 
-        ? 'fixed right-0 top-0 w-60 h-full bg-marron transition-all ease-in duration-500'
+        ? 'fixed right-0 top-0 w-60 h-full menu-shadow bg-marron transition-all ease-in duration-500'
         : 'fixed -right-full top-0 w-60 h-full bg-marron transition-all ease-in duration-500'
       }>
         <h1 className='self-start ml-5 mt-5 mb-8 font-cylburn text-7xl'>

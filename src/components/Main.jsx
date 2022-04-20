@@ -4,8 +4,7 @@ import DesktopMenu from './DesktopMenu';
 import MyBets from './MyBets';
 import NewBet from './NewBet';
 
-const Main = (props) => {
-  
+const Main = (props) => {  
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
 
@@ -18,18 +17,17 @@ const Main = (props) => {
   }, [token, navigate]);
 
   return (
-    <main className='flex-grow bg-marron font-montaga'>
+    <main className='flex h-full items-center py-6 bg-marron font-montaga 
+          lg:pr-5
+          xl:pr-10'>
       <DesktopMenu section={props.section}/>
       
-      <section>
-        <table>
+      <section className='h-full grow overflow-auto'>
           {
             props.section === "/my_bets" ? <MyBets/>
             : props.section === "/new_bet" ? <NewBet/>
             : null
           }
-          
-        </table>
       </section>
     </main>
   )

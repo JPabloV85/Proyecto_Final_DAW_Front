@@ -28,4 +28,7 @@
   .custom-flex-row {
     flex: 0 0 0;
   }
+  .menu-shadow {
+    box-shadow: -1000px 10px 0px 9000px rgb(0 0 0 / 0.6);
+  }
 }

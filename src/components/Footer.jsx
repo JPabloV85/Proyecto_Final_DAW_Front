@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className="bg-dorado fixed inset-x-0 bottom-0 flex flex-col items-center 
+    <footer className="flex flex-col items-center bg-dorado  
           desktop_full:flex-row justify-between desktop_full:px-16">
-      <ul className='text-marron text-2xl flex space-x-6'>
+      <ul className='flex space-x-6 text-2xl text-marron '>
         <li>
           <a target="_blank" href="https://www.facebook.com"><FontAwesomeIcon icon={faFacebookSquare} /></a>
         </li>
@@ -19,7 +19,7 @@ const Footer = () => {
         </li>
       </ul>
 
-      <ul className='text-marron font-montaga text-lg grid grid-cols-3 gap-x-4 text-center place-items-center
+      <ul className='grid grid-cols-3 gap-x-4 place-items-center text-center font-montaga text-lg text-marron 
           lg:gap-x-20 
           xl:flex xl:space-x-12 xl:gap-x-0
           desktop_full:space-x-20'>

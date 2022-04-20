@@ -11,8 +11,8 @@ const Menu = (props) => {
   }
 
   return (
-    <aside className='hidden h-full items-center xl:flex'>
-        <ul className='flex flex-col items-end ml-20 mt-14 text-3xl text-white'>
+    <aside className='hidden items-center mx-10 lg:flex xl:mx-20'>
+        <ul className='flex flex-col items-end text-3xl text-white'>
             <li className="mb-20 hover:underline">
                 <Link to="/main/my_bets" className={
                     props.section === "/my_bets" ? 'text-amarillo-claro' : undefined

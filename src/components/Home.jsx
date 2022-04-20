@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import LogoBlanco from './LogoBlanco';
+import LogoBlanco from './svg_components/LogoBlanco';
 
 const Home = () => {
   return (

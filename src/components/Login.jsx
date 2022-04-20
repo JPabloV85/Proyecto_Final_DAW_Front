@@ -32,8 +32,8 @@ const Login = () => {
             alert("Login successful!");
             navigate("/main/my_bets");
         })
-        .catch(error => {
-            setError(error);
+        .catch(e => {
+            setError(e);
             alert(error);
         });
     }
@@ -52,7 +52,7 @@ const Login = () => {
     }
 
   return (
-    <main className='flex flex-col flex-grow items-center justify-center bg-marron'>    
+    <main className='flex flex-col flex-grow items-center justify-center pb-5 bg-marron'>    
         <form
             method="post"
             onSubmit={login}
