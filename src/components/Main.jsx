@@ -17,7 +17,7 @@ const Main = (props) => {
   }, [token, navigate]);
 
   return (
-    <main className='flex h-full items-center py-6 bg-marron font-montaga 
+    <main className='flex h-full items-center py-6 overflow-auto font-montaga bg-marron
           lg:pr-5
           xl:pr-10'>
       <DesktopMenu section={props.section}/>

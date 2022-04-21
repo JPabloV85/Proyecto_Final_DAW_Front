@@ -19,8 +19,8 @@ const MyBetsRows = (props) => {
                     ? <FontAwesomeIcon icon={faMinus} size="2xl" color='black' />
                     : (
                     row.win === 'true'
-                    ? <FontAwesomeIcon icon={faXmark} size="2xl" color='red' />
-                    : <FontAwesomeIcon icon={faCheck} size="2xl" color='green' />
+                    ? <FontAwesomeIcon icon={faCheck} size="2xl" color='green' />
+                    : <FontAwesomeIcon icon={faXmark} size="2xl" color='red' />
                     )
                 }
                 </td>

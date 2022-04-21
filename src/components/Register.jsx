@@ -92,108 +92,92 @@ const Register = () => {
     }
 
   return (
-    <main className='flex flex-col flex-grow items-center justify-center pb-5 bg-marron'>
-        <form 
-            method="post"
-            onSubmit={submit}
-            className="flex flex-col items-end text-white font-montaga">
-
-            <h1 className="self-center mb-10 text-5xl text-amarillo-claro ">
-                Sign up
-            </h1>
-            {
-                error && (
-                    <div className='self-center -mt-5 mb-7 text-xl text-amarillo-claro'>
-                        {error}
-                    </div>
-                )
-            } 
-            <fieldset className='mb-4'>
-                <label htmlFor="username" className='text-xl lg:text-2xl'>
+    <main className='flex flex-grow items-center justify-center pb-5 bg-marron'>
+        <form method="post" onSubmit={submit} className="flex flex-col font-montaga text-white">
+            <fieldset className='flex flex-col items-end mb-4 text-xl lg:text-2xl'>
+                <legend className="m-auto mb-14 text-5xl text-amarillo-claro">
+                    Sign up
+                </legend>
+                {
+                    error && (
+                        <div className='self-center -mt-5 mb-7 text-xl text-amarillo-claro'>
+                            {error}
+                        </div>
+                    )
+                } 
+                <label className='mb-3'>
                     Username
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        onChange={(e) => setUsername(e.target.value)}
+                        className="custom-input lg:w-64"
+                    />
                 </label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    onChange={(e) => setUsername(e.target.value)}
-                    className="custom-input lg:w-64"
-                />
-            </fieldset>
-            <fieldset className='mb-4'>
-                <label htmlFor="nif" className='text-xl lg:text-2xl'>
+                <label className='mb-3'>
                     NIF
+                    <input
+                        type="text"
+                        id="nif"
+                        name="nif"
+                        onChange={(e) => setNif(e.target.value)}
+                        className="custom-input lg:w-64"
+                    />
                 </label>
-                <input
-                    type="text"
-                    id="nif"
-                    name="nif"
-                    onChange={(e) => setNif(e.target.value)}
-                    className="custom-input lg:w-64"
-                />
-            </fieldset>
-            <fieldset className='mb-4'>
-                <label htmlFor="email" className='text-xl lg:text-2xl'>
+                <label className='mb-3'>
                     Email
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="custom-input lg:w-64"
+                    />
                 </label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="custom-input lg:w-64"
-                />
-            </fieldset>
-            <fieldset className='mb-4'>
-                <label htmlFor="password" className='text-xl lg:text-2xl'>
+                <label className='mb-3'>
                     Password
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="custom-input lg:w-64"
+                    />
                 </label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="custom-input lg:w-64"
-                />
-            </fieldset>
-            <fieldset className='mb-4'>
-                <label htmlFor="confirm" className='text-xl lg:text-2xl'>
+                <label className='mb-3'>
                     Confirm
+                    <input
+                        type="password"
+                        id="confirm"
+                        name="confirm"
+                        onChange={(e) => setConfirm(e.target.value)}
+                        className="custom-input lg:w-64"
+                    />
                 </label>
-                <input
-                    type="password"
-                    id="confirm"
-                    name="confirm"
-                    onChange={(e) => setConfirm(e.target.value)}
-                    className="custom-input lg:w-64"
-                />
-            </fieldset>
-            <fieldset className='mb-4'>
-                <label htmlFor="birth" className='text-xl lg:text-2xl'>
+                <label className='mb-3'>
                     Birth date
+                    <input
+                        type="date"
+                        id="birth"
+                        name="birth"
+                        onChange={(e) => setBirthDate(e.target.value)}
+                        className="custom-input text-lg lg:w-64"
+                    />
                 </label>
-                <input
-                    type="date"
-                    id="birth"
-                    name="birth"
-                    onChange={(e) => setBirthDate(e.target.value)}
-                    className="custom-input lg:w-64"
-                />
-            </fieldset>
-            <fieldset className='mb-4'>
-                <label htmlFor="image" className='text-xl lg:text-2xl'>
+                <label className='mb-3'>
                     NIF Image
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        className="custom-input border-b-0 invert-0 text-lg text-white lg:w-64"
+                    />
                 </label>
-                <input
-                    type="file"
-                    id="image"
-                    name="biimagerth"
-                    className="custom-input border-b-0 invert-0 text-white lg:w-64"
-                />
+                <button type="submit" className='self-end mt-10 text-3xl text-amarillo-claro hover:underline'>
+                    Send
+                </button>
             </fieldset>
-            <button type="submit" className='mt-4 text-3xl text-amarillo-claro hover:underline'>
-                Send
-            </button>
         </form>
     </main>
   )

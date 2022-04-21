@@ -52,47 +52,41 @@ const Login = () => {
     }
 
   return (
-    <main className='flex flex-col flex-grow items-center justify-center pb-5 bg-marron'>    
-        <form
-            method="post"
-            onSubmit={login}
-            className="flex flex-col items-end text-white font-montaga">
-
-            <h1 className="self-center mb-16 text-5xl text-amarillo-claro ">
-                Sign in
-            </h1>
-            {
-                error && (
-                    <div className='self-center -mt-5 mb-7 text-xl text-amarillo-claro'>
-                        {error}
-                    </div>
-                )
-            } 
-            <fieldset className='mb-4'>
-                <label htmlFor="username" className='text-xl lg:text-2xl'>
+    <main className='flex flex-grow items-center justify-center pb-5 bg-marron'>    
+        <form method="post" onSubmit={login} className="flex flex-col font-montaga text-white">
+            <fieldset className='flex flex-col items-end mb-4 text-xl lg:text-2xl'>
+                <legend className="m-auto mb-14 text-5xl text-amarillo-claro">
+                    Sign in
+                </legend>
+                {
+                    error && (
+                        <div className='self-center -mt-5 mb-7 text-xl text-amarillo-claro'>
+                            {error}
+                        </div>
+                    )
+                }
+                <label htmlFor="username" className='mb-3'>
                     Username
-                </label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    onChange={(e) => setUsername(e.target.value)}
-                    className="custom-input lg:w-64"
-                />
-            </fieldset>
-            <fieldset className='mb-4'>
-                <label htmlFor="password" className='text-xl lg:text-2xl'>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        onChange={(e) => setUsername(e.target.value)}
+                        className="custom-input lg:w-64"
+                    />
+                </label> 
+                <label htmlFor="password" className='mb-3'>
                     Password
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="custom-input lg:w-64"
+                    />
                 </label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="custom-input lg:w-64"
-                />
             </fieldset>
-            <button type="submit" className='mt-10 text-3xl text-amarillo-claro hover:underline'>
+            <button type="submit" className='self-end mt-10 text-3xl text-amarillo-claro hover:underline'>
                 Send
             </button>        
         </form>

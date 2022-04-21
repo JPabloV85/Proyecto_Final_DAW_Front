@@ -40,11 +40,11 @@ const MyBets = () => {
   
 
   return (
-    <table className='w-full border-collapse text-center text-sm text-marron bg-dorado
+    <table className='w-full text-center text-sm text-marron bg-dorado
           sm:text-lg
           md:text-xl
           lg:rounded-md'>
-      <caption>Client bets</caption>
+      <caption className='hidden'>Client bets</caption>
       <thead className='h-14'>
         <tr>
           <th scope='col'>RACE TAG</th>
