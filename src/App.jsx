@@ -9,8 +9,12 @@ import Register from './components/Register';
 import Main from './components/Main';
 
 function App() {
-
+  const [newUserBalance, setNewUserBlance] = React.useState(null);
   const [currentPath, setCurrentPath] = React.useState(window.location.pathname);
+
+  const setNewBalance = (newUserBalance) => {
+    setNewUserBlance(newUserBalance);
+  }
 
   //Creacion del observer que comprueba si hay cambios en el DOM y cambia el valor de currentPath
   const mutationObserver = new MutationObserver(function(mutations) {
@@ -38,14 +42,13 @@ function App() {
   return (
     <div id='page' className='bg-fondo_caballo bg-cover h-screen w-screen flex flex-col'>
       <BrowserRouter>
-        <Header path={currentPath}/>
+        <Header path={currentPath} newUserBalance={newUserBalance}/>
 
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/main/my_bets" element={<Main section={"/my_bets"}/>}/>
-          <Route path="/main/new_bet" element={<Main section={"/new_bet"}/>}/>
+          <Route path="/main/my_bets" element={<Main section={"/my_bets"} reciveNewUserBalance={setNewBalance}/>}/>
         </Routes>
 
         <Footer/>

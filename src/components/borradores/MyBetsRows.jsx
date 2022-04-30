@@ -1,6 +1,7 @@
 import React from 'react'
 import { faCheck, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ClaimButton from './ClaimButton';
 
 const MyBetsRows = (props) => {
     return (
@@ -24,7 +25,10 @@ const MyBetsRows = (props) => {
                     )
                 }
                 </td>
-                <td>{row.payment_amount} €</td>
+                <td className='flex flex-col items-center'>
+                    {row.payment_amount} €
+                    <ClaimButton reward={row.payment_amount}/>
+                </td>
             </tr>
             ))
         )

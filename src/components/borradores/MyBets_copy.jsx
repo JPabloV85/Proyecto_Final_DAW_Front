@@ -1,15 +1,19 @@
 import React from 'react'
 import { faCheck, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ClaimButton from './ClaimButton';
 
-const MyBets = (props) => {
+const MyBets_copy = (props) => {
   const [error, setError] = React.useState(null);
   const [response, setResponse] = React.useState(null);
   const [mounted, setMounted] = React.useState(false);
   const [windowWidth, setWindowWidth] = React.useState(1280);
-  const [newUserBalance, setNewUserBalance] = React.useState(0);
+  const [newUserBalance, setNewUserBalance] = React.useState(null);
   const token = localStorage.getItem("access_token");
-  
+
+  const funNewUserBalance = (amount) => {
+    setNewUserBalance(amount);
+  }
   props.funPullData(newUserBalance);
 
   React.useEffect(() => {
@@ -33,76 +37,19 @@ const MyBets = (props) => {
       if (data.error) {
         setError(data.message);
         return
-      }
+    }
       setResponse(data);
       setError(null);
       setMounted(true);
     })
     .catch(e => {
       setError(e);
-      alert(e);
+      alert(error);
     });
-  }, [token, error])
+  }, [token, error, mounted])
 
-
-
-
-  const patchEntities = (amount, bet_id) => {
-    patchBetClaimed(bet_id);
-    patchClientCash(amount); 
-  }
-
-  const patchBetClaimed = (bet_id) => {
-    fetch('http://127.0.0.1:5000/api/bet/update_claimed', {
-      headers:{
-        Authorization: 'Bearer ' + token,
-        "Content-Type": "application/json"
-      },
-      method: "PATCH",
-      body: JSON.stringify({
-        idBet: bet_id
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        setError(data.message);
-        return
-      }
-      this.forceUpdate();
-    })
-    .catch(e => {
-      console.log(e);
-      setError(e);
-    });
-    
-  }
-
-  const patchClientCash = (amount) => {
-    fetch('http://127.0.0.1:5000/api/client/update_cash', {
-      headers:{
-        Authorization: 'Bearer ' + token,
-        "Content-Type": "application/json"
-      },
-      method: "PATCH",
-      body: JSON.stringify({
-        reward: amount
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        setError(data.message);
-        return
-      }
-      setNewUserBalance(data.new_cash);
-      setError(null);
-    })
-    .catch(e => {
-      setError(e);
-    });
-  }
-
+  
+  
 
   return (
     <table className='w-full text-center text-sm text-marron bg-dorado
@@ -122,7 +69,7 @@ const MyBets = (props) => {
       </thead>
       <tbody className='bg-amarillo-claro'>
         {
-          !mounted
+          mounted === false 
           ? <tr className='h-80'><td colSpan={6}>Loading...</td></tr> 
           : (response.length === 0 
             ? <tr className='h-80'><td colSpan={6}>You haven't placed any bets yet</td></tr>
@@ -146,31 +93,7 @@ const MyBets = (props) => {
                   </td>
                   <td className='flex flex-col items-center'>
                     {row.payment_amount} €
-                    {row.win
-                      ? (row.claimed
-                        ? (
-                          <button onClick={() => patchEntities(row.payment_amount, row.id)} disabled
-                            className='w-20 h-8 mb-1 rounded-lg text-slate-500 bg-slate-300 sm:w-24 sm:h-10 md:w-28 cursor-not-allowed'
-                          >
-                            CLAIMED
-                          </button>
-                        )
-                        : (
-                          <button onClick={() => patchEntities(row.payment_amount, row.id)}
-                            className='w-16 h-8 mb-1 rounded-lg bg-dorado sm:w-20 sm:h-10'
-                          >
-                            CLAIM
-                          </button>
-                        )
-                      )
-                      : (
-                        <button onClick={() => patchEntities(row.payment_amount, row.id)} disabled
-                          className='w-16 h-8 mb-1 rounded-lg text-slate-500 bg-slate-300 sm:w-20 sm:h-10 cursor-not-allowed'
-                        >
-                          CLAIM
-                        </button>
-                      )
-                    }
+                    <ClaimButton row={row} funNewUserBalance={funNewUserBalance}/>
                   </td>
                 </tr>
               )})
@@ -182,4 +105,4 @@ const MyBets = (props) => {
   )
 }
 
-export default MyBets
+export default MyBets_copy

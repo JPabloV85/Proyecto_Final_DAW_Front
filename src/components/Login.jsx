@@ -19,16 +19,15 @@ const Login = () => {
             body: JSON.stringify({
                 username: username,
                 password: password
-              })
+            })
         })
         .then(response => response.json())
         .then(data => {
-            if (data?.error) {
-                setError(data?.message);
+            if (data.error) {
+                setError(data.message);
                 return
             }
-            localStorage.setItem("access_token", data?.access_token);
-            localStorage.setItem("username", username);
+            localStorage.setItem("access_token", data.access_token);
             alert("Login successful!");
             navigate("/main/my_bets");
         })

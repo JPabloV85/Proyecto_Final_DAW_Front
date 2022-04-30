@@ -36,7 +36,7 @@ const Header = (props) => {
                             Sign in
                     </Link> 
                     :
-                    <UserBalance/>
+                    <UserBalance balanceUpdated={props.newUserBalance}/>
                 }
             </header>
         )
