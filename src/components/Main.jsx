@@ -2,6 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import DesktopMenu from './DesktopMenu';
 import MyBets from './MyBets';
+import NewBet from './NewBet';
+import Horses from './Horses';
 
 const Main = (props) => {
   const [newUserBalance, setNewUserBalance] = React.useState(null);
@@ -32,6 +34,8 @@ const Main = (props) => {
           {mounted 
             ?(
               props.section === "/my_bets" ? <MyBets funPullData={pullNewUserBalance}/>
+              : props.section === "/new_bet" ? <NewBet/>
+              : props.section === "/horses" ? <Horses/>
               : null
             )
             :(

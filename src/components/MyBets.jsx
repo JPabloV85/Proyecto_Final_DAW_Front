@@ -23,10 +23,10 @@ const MyBets = (props) => {
   
   React.useEffect(() => {
     fetch('http://127.0.0.1:5000/api/bet/my_bets', {
-    headers:{
-      Authorization: 'Bearer ' + token
-    },
-    method: "GET"
+      headers:{
+        Authorization: 'Bearer ' + token
+      },
+      method: "GET"
     })
     .then(response => response.json())
     .then(data => {

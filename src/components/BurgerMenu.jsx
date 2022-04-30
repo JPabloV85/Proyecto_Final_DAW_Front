@@ -41,7 +41,7 @@ const BurgerMenu = (props) => {
           </li>
           <li className="mb-7 hover:underline" onClick={showMenu}>
             <Link to="/main/new_bet" className={
-              props.path.endsWith("/new_bet") ? 'text-amarillo-claro' : undefined
+              props.path.endsWith("/new_bet") || props.path.endsWith("/horses") ? 'text-amarillo-claro' : undefined
             }>
               New Bet <FontAwesomeIcon icon={faMoneyBillTransfer}/>
             </Link>

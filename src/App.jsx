@@ -49,6 +49,8 @@ function App() {
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/main/my_bets" element={<Main section={"/my_bets"} reciveNewUserBalance={setNewBalance}/>}/>
+          <Route path="/main/new_bet" element={<Main section={"/new_bet"} reciveNewUserBalance={setNewBalance}/>}/>
+          <Route path="/main/horses" element={<Main section={"/horses"} reciveNewUserBalance={setNewBalance}/>}/>
         </Routes>
 
         <Footer/>

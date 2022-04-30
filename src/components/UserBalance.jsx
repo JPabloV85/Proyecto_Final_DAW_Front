@@ -2,9 +2,13 @@ import React from 'react'
 
 const UserBalance = (props) => {
     const [error, setError] = React.useState(null);
-    const [response, setResponse] = React.useState(null);
     const [imageURL, setImageURL] = React.useState("");
+    const [accountBalance, setAccountBalance] = React.useState(null);
     const token = localStorage.getItem("access_token");
+
+    React.useEffect(() => {
+        if (props.balanceUpdated !== 0) setAccountBalance(props.balanceUpdated)
+    }, [props.balanceUpdated]);
 
     React.useEffect(() => {
         fetch('http://127.0.0.1:5000/api/client/my_balance', {
@@ -15,7 +19,7 @@ const UserBalance = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            setResponse(data);
+            setAccountBalance(data.cash);            
             fetch(`http://127.0.0.1:5000/static/images/${data.image}`, {
                 headers:{
                     Authorization: token
@@ -23,23 +27,17 @@ const UserBalance = (props) => {
                 method: "GET"
             })
             .then(response => response.blob())
-            .then(imageBlob => { 
-                if (data.error) {
-                    setError(data.message);
-                    return
-                }
+            .then(imageBlob => {
                 const imageObjectURL = URL.createObjectURL(imageBlob);
                 setImageURL(imageObjectURL);
                 setError(null);
             })
             .catch(e => {
                 setError(e);
-                alert(error);
             });
         })
         .catch(e => {
             setError(e);
-            alert(error);
         });
     }, [token, error])
     
@@ -52,7 +50,7 @@ const UserBalance = (props) => {
             lg:mr-5'/>
 
         <p className='flex items-center text-center xl:flex-col'>
-            Account&nbsp;Balance: {props.balanceUpdated === 0 ? response?.cash : props.balanceUpdated} €
+            Account&nbsp;Balance: {accountBalance} €
         </p>
     </div>
   )

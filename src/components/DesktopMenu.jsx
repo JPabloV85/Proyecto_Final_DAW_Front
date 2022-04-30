@@ -22,7 +22,7 @@ const Menu = (props) => {
             </li>
             <li className="mb-20 hover:underline">
                 <Link to="/main/new_bet" className={
-                    props.section === "/new_bet" ? 'text-amarillo-claro' : undefined
+                    props.section === "/new_bet" || props.section === "/horses" ? 'text-amarillo-claro' : undefined
                 }>
                     New Bet <FontAwesomeIcon icon={faMoneyBillTransfer}/>
                 </Link>
