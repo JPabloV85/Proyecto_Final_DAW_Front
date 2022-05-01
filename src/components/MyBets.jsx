@@ -1,16 +1,15 @@
 import React from 'react'
 import { faCheck, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ClientBalanceContext } from './helpers/Context';
 
-const MyBets = (props) => {
+const MyBets = () => {
   const [error, setError] = React.useState(null);
   const [response, setResponse] = React.useState(null);
   const [mounted, setMounted] = React.useState(false);
   const [windowWidth, setWindowWidth] = React.useState(1280);
-  const [newUserBalance, setNewUserBalance] = React.useState(0);
+  const {clientBalance, setClientBalance} = React.useContext(ClientBalanceContext);
   const token = localStorage.getItem("access_token");
-  
-  props.funPullData(newUserBalance);
 
   React.useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -40,12 +39,8 @@ const MyBets = (props) => {
     })
     .catch(e => {
       setError(e);
-      alert(e);
     });
-  }, [token, error])
-
-
-
+  }, [token, error, clientBalance])
 
   const patchEntities = (amount, bet_id) => {
     patchBetClaimed(bet_id);
@@ -69,7 +64,6 @@ const MyBets = (props) => {
         setError(data.message);
         return
       }
-      this.forceUpdate();
     })
     .catch(e => {
       console.log(e);
@@ -95,7 +89,7 @@ const MyBets = (props) => {
         setError(data.message);
         return
       }
-      setNewUserBalance(data.new_cash);
+      setClientBalance(data.new_cash);
       setError(null);
     })
     .catch(e => {
@@ -106,9 +100,9 @@ const MyBets = (props) => {
 
   return (
     <table className='w-full text-center text-sm text-marron bg-dorado
-          sm:text-lg
-          md:text-xl
-          lg:rounded-md'>
+        sm:text-lg
+        md:text-xl
+        lg:rounded-md'>
       <caption className='hidden'>Client bets</caption>
       <thead className='h-14'>
         <tr>
@@ -150,14 +144,14 @@ const MyBets = (props) => {
                       ? (row.claimed
                         ? (
                           <button onClick={() => patchEntities(row.payment_amount, row.id)} disabled
-                            className='w-20 h-8 mb-1 rounded-lg text-slate-500 bg-slate-300 sm:w-24 sm:h-10 md:w-28 cursor-not-allowed'
+                            className='w-20 h-8 mb-1 rounded button-shadow text-slate-500 bg-slate-300 sm:w-24 sm:h-10 md:w-28 cursor-not-allowed'
                           >
                             CLAIMED
                           </button>
                         )
                         : (
                           <button onClick={() => patchEntities(row.payment_amount, row.id)}
-                            className='w-16 h-8 mb-1 rounded-lg bg-dorado sm:w-20 sm:h-10'
+                            className='w-16 h-8 mb-1 rounded button-shadow bg-dorado sm:w-20 sm:h-10'
                           >
                             CLAIM
                           </button>
@@ -165,7 +159,7 @@ const MyBets = (props) => {
                       )
                       : (
                         <button onClick={() => patchEntities(row.payment_amount, row.id)} disabled
-                          className='w-16 h-8 mb-1 rounded-lg text-slate-500 bg-slate-300 sm:w-20 sm:h-10 cursor-not-allowed'
+                          className='w-16 h-8 mb-1 rounded button-shadow text-slate-500 bg-slate-300 sm:w-20 sm:h-10 cursor-not-allowed'
                         >
                           CLAIM
                         </button>

@@ -1,14 +1,11 @@
 import React from 'react'
+import { ClientBalanceContext } from './helpers/Context';
 
-const UserBalance = (props) => {
+const UserBalance = () => {
     const [error, setError] = React.useState(null);
     const [imageURL, setImageURL] = React.useState("");
-    const [accountBalance, setAccountBalance] = React.useState(null);
+    const {clientBalance, setClientBalance} = React.useContext(ClientBalanceContext);
     const token = localStorage.getItem("access_token");
-
-    React.useEffect(() => {
-        if (props.balanceUpdated !== 0) setAccountBalance(props.balanceUpdated)
-    }, [props.balanceUpdated]);
 
     React.useEffect(() => {
         fetch('http://127.0.0.1:5000/api/client/my_balance', {
@@ -19,7 +16,7 @@ const UserBalance = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            setAccountBalance(data.cash);            
+            setClientBalance(data.cash);            
             fetch(`http://127.0.0.1:5000/static/images/${data.image}`, {
                 headers:{
                     Authorization: token
@@ -39,7 +36,7 @@ const UserBalance = (props) => {
         .catch(e => {
             setError(e);
         });
-    }, [token, error])
+    }, [token, error, setClientBalance])
     
 
   return (
@@ -50,7 +47,7 @@ const UserBalance = (props) => {
             lg:mr-5'/>
 
         <p className='flex items-center text-center xl:flex-col'>
-            Account&nbsp;Balance: {accountBalance} €
+            Account&nbsp;Balance: {clientBalance} €
         </p>
     </div>
   )

@@ -6,22 +6,16 @@ import NewBet from './NewBet';
 import Horses from './Horses';
 
 const Main = (props) => {
-  const [newUserBalance, setNewUserBalance] = React.useState(null);
   const [mounted, setMounted] = React.useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
-
-  const pullNewUserBalance = (amount) => {
-    setNewUserBalance(amount);
-  }
-  props.reciveNewUserBalance(newUserBalance);
 
   React.useEffect(() => {
     if (token === "undefined" || token === null) {
       alert("You are not logged in");
       navigate("/login");
     }
-    setMounted(true);    
+    setMounted(true);
   }, [token, navigate]);
 
   return (
@@ -31,20 +25,20 @@ const Main = (props) => {
       <DesktopMenu section={props.section}/>
       
       <section className='h-full grow overflow-auto'>
-          {mounted 
-            ?(
-              props.section === "/my_bets" ? <MyBets funPullData={pullNewUserBalance}/>
-              : props.section === "/new_bet" ? <NewBet/>
-              : props.section === "/horses" ? <Horses/>
-              : null
-            )
-            :(
-              <div className='flex flex-col w-full h-full text-2xl text-marron bg-dorado
+        {!mounted 
+          ?(
+            <div className='flex flex-col w-full h-full text-2xl text-marron bg-dorado
               lg:rounded-md lg:text-3xl'>
-                <p className='m-auto'>Loading...</p>
-              </div>
-            )
-          }
+              <p className='m-auto'>Loading...</p>
+            </div>
+          )
+          :(
+            props.section === "/my_bets" ? <MyBets/>
+            : props.section === "/new_bet" ? <NewBet/>
+            : props.section === "/horses" ? <Horses/>
+            : null
+          )
+        }
       </section>
     </main>
     

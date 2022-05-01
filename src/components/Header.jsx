@@ -1,6 +1,6 @@
 import React from 'react'
-import LogoBlanco from './svg_components/LogoBlanco'
-import UserBalance from './UserBalance'
+import LogoBlanco from './svg/LogoBlanco'
+import ClientBalance from './ClientBalance'
 import { Link } from 'react-router-dom'
 import BurgerMenu from './BurgerMenu'
 
@@ -36,7 +36,7 @@ const Header = (props) => {
                             Sign in
                     </Link> 
                     :
-                    <UserBalance balanceUpdated={props.newUserBalance}/>
+                    <ClientBalance/>
                 }
             </header>
         )
