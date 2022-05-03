@@ -72,7 +72,7 @@ const NewBet = () => {
                   <td>{row.date}</td>
                   <td>{row.time}</td>
                   <td>
-                    <Link to='/main/horses' className='cursor-pointer hover:underline'>
+                    <Link to="/main/horses" state={{ race_id: row.id }} className='cursor-pointer hover:underline'>
                       Participants
                     </Link>
                   </td>

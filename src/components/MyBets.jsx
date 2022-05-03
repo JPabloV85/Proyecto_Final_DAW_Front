@@ -42,45 +42,17 @@ const MyBets = () => {
     });
   }, [token, error, clientBalance])
 
-  const patchEntities = (amount, bet_id) => {
-    patchBetClaimed(bet_id);
-    patchClientCash(amount); 
-  }
 
-  const patchBetClaimed = (bet_id) => {
-    fetch('http://127.0.0.1:5000/api/bet/update_claimed', {
+  const claimBet = (amount, bet_id) => {
+    fetch('http://127.0.0.1:5000/api/client/claim', {
       headers:{
         Authorization: 'Bearer ' + token,
         "Content-Type": "application/json"
       },
       method: "PATCH",
       body: JSON.stringify({
+        reward: amount,
         idBet: bet_id
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        setError(data.message);
-        return
-      }
-    })
-    .catch(e => {
-      console.log(e);
-      setError(e);
-    });
-    
-  }
-
-  const patchClientCash = (amount) => {
-    fetch('http://127.0.0.1:5000/api/client/update_cash', {
-      headers:{
-        Authorization: 'Bearer ' + token,
-        "Content-Type": "application/json"
-      },
-      method: "PATCH",
-      body: JSON.stringify({
-        reward: amount
       })
     })
     .then(response => response.json())
@@ -106,7 +78,8 @@ const MyBets = () => {
       <caption className='hidden'>Client bets</caption>
       <thead className='h-14'>
         <tr>
-          <th scope='col'>RACE TAG</th>
+          <th scope='col'>RACE</th>
+          <th scope='col'>HORSE</th>
           <th scope='col'>DATE</th>
           { windowWidth >= 1400 && (<th scope='col'>TIME</th>) }
           <th scope='col'>BET</th>
@@ -124,6 +97,7 @@ const MyBets = () => {
               return(
                 <tr key={row.id} className='h-14 even:bg-amarillo-oscuro'>
                   <td>{row.race_tag}</td>
+                  <td>{row.horse_name}</td>
                   <td>{row.date}</td>
                   {windowWidth >= 1400 && <td>{row.time}</td>}
                   <td>{row.bet_amount} €</td>
@@ -143,23 +117,27 @@ const MyBets = () => {
                     {row.win
                       ? (row.claimed
                         ? (
-                          <button onClick={() => patchEntities(row.payment_amount, row.id)} disabled
-                            className='w-20 h-8 mb-1 rounded button-shadow text-slate-500 bg-slate-300 sm:w-24 sm:h-10 md:w-28 cursor-not-allowed'
+                          <button disabled
+                            className='w-20 h-8 mb-1 rounded button-shadow text-slate-500 bg-slate-300 cursor-not-allowed
+                            sm:w-24 sm:h-10 
+                            md:w-28'
                           >
                             CLAIMED
                           </button>
                         )
                         : (
-                          <button onClick={() => patchEntities(row.payment_amount, row.id)}
-                            className='w-16 h-8 mb-1 rounded button-shadow bg-dorado sm:w-20 sm:h-10'
+                          <button onClick={() => claimBet(row.payment_amount, row.id)}
+                            className='w-16 h-8 mb-1 rounded button-shadow bg-dorado 
+                            sm:w-20 sm:h-10'
                           >
                             CLAIM
                           </button>
                         )
                       )
                       : (
-                        <button onClick={() => patchEntities(row.payment_amount, row.id)} disabled
-                          className='w-16 h-8 mb-1 rounded button-shadow text-slate-500 bg-slate-300 sm:w-20 sm:h-10 cursor-not-allowed'
+                        <button disabled
+                          className='w-16 h-8 mb-1 rounded button-shadow text-slate-500 bg-slate-300 cursor-not-allowed
+                          sm:w-20 sm:h-10'
                         >
                           CLAIM
                         </button>

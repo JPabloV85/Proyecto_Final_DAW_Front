@@ -1,12 +1,14 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import DesktopMenu from './DesktopMenu';
 import MyBets from './MyBets';
 import NewBet from './NewBet';
 import Horses from './Horses';
 
 const Main = (props) => {
-  const [mounted, setMounted] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);  
+  const location = useLocation();
+  const {race_id} = location.state !== null ? location.state : 0;
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
 
@@ -35,7 +37,7 @@ const Main = (props) => {
           :(
             props.section === "/my_bets" ? <MyBets/>
             : props.section === "/new_bet" ? <NewBet/>
-            : props.section === "/horses" ? <Horses/>
+            : props.section === "/horses" ? <Horses race_id={race_id}/>
             : null
           )
         }
