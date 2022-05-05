@@ -1,5 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { faCog } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NewBet = () => {
   const [error, setError] = React.useState(null);
@@ -53,7 +55,7 @@ const NewBet = () => {
       <caption className='hidden'>Races availables for betting</caption>
       <thead className='h-14'>
         <tr>
-          <th scope='col'>RACE TAG</th>
+          <th scope='col'>RACE</th>
           <th scope='col'>DATE</th>
           <th scope='col'>TIME</th>
           <th scope='col'></th>
@@ -62,7 +64,9 @@ const NewBet = () => {
       <tbody className='bg-amarillo-claro'>
         {
           mounted === false 
-          ? <tr className='h-80'><td colSpan={6}>Loading...</td></tr> 
+          ? <tr className='h-80'>
+              <td colSpan={6}><FontAwesomeIcon icon={faCog} color='copper' spin/> Loading...</td>
+            </tr> 
           : (
             response.length === 0 
             ? <tr className='h-80'><td colSpan={6}>There are no races available for betting. Try again later.</td></tr>

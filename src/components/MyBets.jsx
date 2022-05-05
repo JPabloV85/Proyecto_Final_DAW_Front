@@ -1,5 +1,5 @@
 import React from 'react'
-import { faCheck, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faCog, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ClientBalanceContext } from './helpers/Context';
 
@@ -90,7 +90,9 @@ const MyBets = () => {
       <tbody className='bg-amarillo-claro'>
         {
           !mounted
-          ? <tr className='h-80'><td colSpan={6}>Loading...</td></tr> 
+          ? <tr className='h-80'>
+              <td colSpan={6}><FontAwesomeIcon icon={faCog} color='copper' spin/> Loading...</td>
+            </tr> 
           : (response.length === 0 
             ? <tr className='h-80'><td colSpan={6}>You haven't placed any bets yet</td></tr>
             : (response.map(row =>{

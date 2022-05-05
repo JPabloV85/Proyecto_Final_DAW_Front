@@ -9,13 +9,13 @@ const Footer = () => {
           desktop_full:flex-row justify-between desktop_full:px-16">
       <ul className='flex space-x-6 text-2xl text-marron '>
         <li>
-          <a target="_blank" href="https://www.facebook.com"><FontAwesomeIcon icon={faFacebookSquare} /></a>
+          <a target="_blank" rel="noreferrer" href="https://www.facebook.com"><FontAwesomeIcon icon={faFacebookSquare} /></a>
         </li>
         <li>
-          <a target="_blank" href="https://www.instagram.com"><FontAwesomeIcon icon={faInstagramSquare} /></a>
+          <a target="_blank" rel="noreferrer" href="https://www.instagram.com"><FontAwesomeIcon icon={faInstagramSquare} /></a>
         </li>
         <li>
-          <a target="_blank" href="https://www.twitter.com"><FontAwesomeIcon icon={faTwitterSquare} /></a>
+          <a target="_blank" rel="noreferrer" href="https://www.twitter.com"><FontAwesomeIcon icon={faTwitterSquare} /></a>
         </li>
       </ul>
 

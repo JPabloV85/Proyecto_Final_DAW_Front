@@ -16,9 +16,14 @@ module.exports = {
         'fondo_caballo': "url('./image/corredor.jpg')"
       },
       screens: {
+        'tablet': '600px',
         'desktop_full': '1400px',
       },
       maxWidth: {
+        '2xbig': '660px',
+        'xbig': '630px',
+        'big': '600px',
+        'mid': '300px',
         'small': '200px',
         'very-small': '70px'
       }

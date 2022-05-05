@@ -1,6 +1,6 @@
 import './App.css';
-import React from 'react' 
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ClientBalanceContext } from './components/helpers/Context';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -12,7 +12,7 @@ import Main from './components/Main';
 function App() {
   const [mounted, setMounted] = React.useState(false);
   const [currentPath, setCurrentPath] = React.useState(window.location.pathname);
-  const [clientBalance, setClientBalance] = React.useState(0);  
+  const [clientBalance, setClientBalance] = React.useState(0);
 
   React.useEffect(() => {
     //Creacion del observer que comprueba si hay cambios en el DOM y cambia el valor de currentPath
@@ -44,7 +44,7 @@ function App() {
     !mounted
     ? <div>Loading...</div>
     : <div id='page' className='bg-fondo_caballo bg-cover h-screen w-screen flex flex-col'>
-      <ClientBalanceContext.Provider value={{clientBalance, setClientBalance}}>        
+      <ClientBalanceContext.Provider value={{clientBalance, setClientBalance}}>
         <BrowserRouter>
           <Header path={currentPath}/>
 
@@ -55,6 +55,7 @@ function App() {
             <Route path="/main/my_bets" element={<Main section={"/my_bets"} />}/>
             <Route path="/main/new_bet" element={<Main section={"/new_bet"} />}/>
             <Route path="/main/horses" element={<Main section={"/horses"} />}/>
+            <Route path="/main/horse_detail" element={<Main section={"/horse_detail"} />}/>
           </Routes>
 
           <Footer/>

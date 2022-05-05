@@ -1,11 +1,15 @@
 import React from 'react'
 import { ClientBalanceContext } from './helpers/Context';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 const Horses = (props) => {
   const [error, setError] = React.useState(null);
   const [response, setResponse] = React.useState(null);
   const [mounted, setMounted] = React.useState(false);
   const {clientBalance, setClientBalance} = React.useContext(ClientBalanceContext);
+  const race_id = props.race_id;
   const token = localStorage.getItem("access_token");
   
   React.useEffect(() => {
@@ -16,7 +20,7 @@ const Horses = (props) => {
       },
       method: "POST",
       body: JSON.stringify({
-        race_id: props.race_id
+        race_id: race_id
       })
     })
     .then(response => response.json())
@@ -33,7 +37,7 @@ const Horses = (props) => {
       setError(e);
       console.log(error);
     });
-  }, [token, error, clientBalance])
+  }, [token, error, clientBalance, race_id])
 
   const makeBet = (index, horse_id) => {
     const amount = document.getElementById("amount"+index).value;
@@ -99,13 +103,19 @@ const Horses = (props) => {
       <tbody className='bg-amarillo-claro'>
         {
           mounted === false 
-          ? <tr className='h-80'><td colSpan={6}>Loading...</td></tr> 
+          ? <tr className='h-80'>
+              <td colSpan={6}><FontAwesomeIcon icon={faCog} color='copper' spin/> Loading...</td>
+            </tr> 
           : (
             response.length === 0 
             ? <tr className='h-80'><td colSpan={6}>There are no races available for betting. Try again later.</td></tr>
             : (response.map( (horseRow, index) => (
                 <tr key={horseRow.horse_id} className='h-14 even:bg-amarillo-oscuro'>
-                  <td>{horseRow.horse_name}</td>
+                  <td>
+                    <Link to="/main/horse_detail" state={{ horse_id: horseRow.horse_id }} className='cursor-pointer hover:underline'>
+                      {horseRow.horse_name}
+                    </Link>
+                  </td>
                   <td>{horseRow.win_ratio}%</td>
                   <td>
                     <select name={"postion"+index} id={"position"+index} 

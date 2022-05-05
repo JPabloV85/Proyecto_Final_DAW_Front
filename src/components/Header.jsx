@@ -5,6 +5,17 @@ import { Link } from 'react-router-dom'
 import BurgerMenu from './BurgerMenu'
 
 const Header = (props) => {
+    const [windowWidth, setWindowWidth] = React.useState(1280);
+
+    React.useEffect(() => {
+        setWindowWidth(window.innerWidth);
+        const onResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', onResize);
+        return () => {
+          window.removeEventListener('resize', onResize);
+        }
+    }, []);
+
     if (props.path !== "/") {
         return (
             <header className='flex flex-wrap justify-between items-center bg-marron text-amarillo-claro'>
@@ -36,7 +47,7 @@ const Header = (props) => {
                             Sign in
                     </Link> 
                     :
-                    <ClientBalance/>
+                    (props.path !== "/main/horse_detail" || windowWidth >= 1024) && <ClientBalance/>
                 }
             </header>
         )

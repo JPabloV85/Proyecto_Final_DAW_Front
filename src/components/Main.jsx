@@ -4,11 +4,15 @@ import DesktopMenu from './DesktopMenu';
 import MyBets from './MyBets';
 import NewBet from './NewBet';
 import Horses from './Horses';
+import HorseDetail from './HorseDetail';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 const Main = (props) => {
   const [mounted, setMounted] = React.useState(false);  
   const location = useLocation();
   const {race_id} = location.state !== null ? location.state : 0;
+  const {horse_id} = location.state !== null ? location.state : 0;
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
 
@@ -21,29 +25,35 @@ const Main = (props) => {
   }, [token, navigate]);
 
   return (
-    <main className='flex h-full items-center py-6 overflow-auto font-montaga bg-marron
-          lg:pr-5
-          xl:pr-10'>
-      <DesktopMenu section={props.section}/>
+    <main className={
+      props.section !== "/horse_detail"
+      ? 'flex h-full items-center py-5 overflow-auto font-montaga bg-marron lg:pr-5 xl:pr-10'
+      : 'flex h-full items-center overflow-auto font-montaga bg-marron'
+    }>
+      { props.section !== "/horse_detail" && <DesktopMenu section={props.section}/>}
       
-      <section className='h-full grow overflow-auto'>
+      <section className={
+        props.section !== "/horse_detail"
+        ? 'h-full grow overflow-auto'
+        : 'flex justify-center grow p-3'
+      }>
         {!mounted 
           ?(
             <div className='flex flex-col w-full h-full text-2xl text-marron bg-dorado
               lg:rounded-md lg:text-3xl'>
-              <p className='m-auto'>Loading...</p>
+              <p className='m-auto'><FontAwesomeIcon icon={faCog} color='copper' spin/> Loading...</p>
             </div>
           )
           :(
             props.section === "/my_bets" ? <MyBets/>
             : props.section === "/new_bet" ? <NewBet/>
             : props.section === "/horses" ? <Horses race_id={race_id}/>
+            : props.section === "/horse_detail" ? <HorseDetail horse_id={horse_id}/>
             : null
           )
         }
       </section>
     </main>
-    
   )
 }
 
