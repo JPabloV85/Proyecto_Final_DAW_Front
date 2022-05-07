@@ -22,7 +22,7 @@ const BurgerMenu = (props) => {
       />
       <nav className={
         active 
-        ? 'fixed right-0 top-0 w-60 h-full menu-shadow bg-marron transition-all ease-in duration-500'
+        ? 'z-10 fixed right-0 top-0 w-60 h-full menu-shadow bg-marron transition-all ease-in duration-500'
         : 'fixed -right-full top-0 w-60 h-full bg-marron transition-all ease-in duration-500'
       }>
         <h1 className='self-start ml-5 mt-5 mb-8 font-cylburn text-7xl'>

@@ -51,43 +51,45 @@ const Login = () => {
     }
 
   return (
-    <main className='flex flex-grow items-center justify-center pb-5 bg-marron'>    
-        <form method="post" onSubmit={login} className="flex flex-col font-montaga text-white">
-            <fieldset className='flex flex-col items-end mb-4 text-xl lg:text-2xl'>
+    <main className='flex flex-grow items-center justify-center px-5 pb-5 bg-marron'>    
+        <form method="post" onSubmit={login} className="flex flex-col items-center font-montaga text-white">
+            <fieldset className='flex flex-col items-center text-xl lg:text-2xl'>
                 <legend className="m-auto mb-14 text-5xl text-amarillo-claro">
                     Sign in
                 </legend>
                 {
                     error && (
-                        <div className='self-center -mt-5 mb-7 text-xl text-amarillo-claro'>
+                        <p className='-mt-6 mb-8 text-center text-xl text-amarillo-claro'>
                             {error}
-                        </div>
+                        </p>
                     )
                 }
-                <label htmlFor="username" className='mb-3'>
-                    Username
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        onChange={(e) => setUsername(e.target.value)}
-                        className="custom-input lg:w-64"
-                    />
-                </label> 
-                <label htmlFor="password" className='mb-3'>
-                    Password
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="custom-input lg:w-64"
-                    />
-                </label>
+                <div className='flex flex-col items-end'>
+                    <label htmlFor="username" className='mb-3'>
+                        Username
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="custom-input lg:w-64"
+                        />
+                    </label> 
+                    <label htmlFor="password">
+                        Password
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="custom-input lg:w-64"
+                        />
+                    </label>
+                    <button type="submit" className='self-end mt-10 text-3xl text-amarillo-claro hover:underline'>
+                        Send
+                    </button> 
+                </div>
             </fieldset>
-            <button type="submit" className='self-end mt-10 text-3xl text-amarillo-claro hover:underline'>
-                Send
-            </button>        
         </form>
     </main>
   )

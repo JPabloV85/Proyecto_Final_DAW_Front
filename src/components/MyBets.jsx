@@ -1,24 +1,14 @@
 import React from 'react'
 import { faCheck, faCog, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ClientBalanceContext } from './helpers/Context';
+import { MyContext } from './helpers/MyContext';
 
 const MyBets = () => {
   const [error, setError] = React.useState(null);
   const [response, setResponse] = React.useState(null);
   const [mounted, setMounted] = React.useState(false);
-  const [windowWidth, setWindowWidth] = React.useState(1280);
-  const {clientBalance, setClientBalance} = React.useContext(ClientBalanceContext);
+  const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}] = React.useContext(MyContext);
   const token = localStorage.getItem("access_token");
-
-  React.useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    const onResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', onResize);
-    return () => {
-      window.removeEventListener('resize', onResize);
-    }
-  }, []);
   
   React.useEffect(() => {
     fetch('http://127.0.0.1:5000/api/bet/my_bets', {

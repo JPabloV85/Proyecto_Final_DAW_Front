@@ -1,5 +1,5 @@
 import React from 'react'
-import { ClientBalanceContext } from './helpers/Context';
+import { MyContext } from './helpers/MyContext';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,7 @@ const Horses = (props) => {
   const [error, setError] = React.useState(null);
   const [response, setResponse] = React.useState(null);
   const [mounted, setMounted] = React.useState(false);
-  const {clientBalance, setClientBalance} = React.useContext(ClientBalanceContext);
+  const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}] = React.useContext(MyContext);
   const race_id = props.race_id;
   const token = localStorage.getItem("access_token");
   

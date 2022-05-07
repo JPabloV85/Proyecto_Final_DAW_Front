@@ -1,10 +1,10 @@
 import React from 'react'
-import { ClientBalanceContext } from './helpers/Context';
+import { MyContext } from './helpers/MyContext';
 
-const UserBalance = () => {
+const ClientBalance = () => {
     const [error, setError] = React.useState(null);
     const [imageURL, setImageURL] = React.useState("");
-    const {clientBalance, setClientBalance} = React.useContext(ClientBalanceContext);
+    const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}] = React.useContext(MyContext);
     const token = localStorage.getItem("access_token");
 
     React.useEffect(() => {
@@ -53,4 +53,4 @@ const UserBalance = () => {
   )
 }
 
-export default UserBalance
+export default ClientBalance

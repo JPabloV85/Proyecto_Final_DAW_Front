@@ -3,9 +3,10 @@ import LogoBlanco from './svg/LogoBlanco'
 import ClientBalance from './ClientBalance'
 import { Link } from 'react-router-dom'
 import BurgerMenu from './BurgerMenu'
+import { MyContext } from './helpers/MyContext'
 
 const Header = (props) => {
-    const [windowWidth, setWindowWidth] = React.useState(1280);
+    const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}] = React.useContext(MyContext);
 
     React.useEffect(() => {
         setWindowWidth(window.innerWidth);

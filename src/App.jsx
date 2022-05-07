@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ClientBalanceContext } from './components/helpers/Context';
+import { MyContextProvider } from './components/helpers/MyContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -12,10 +12,9 @@ import Main from './components/Main';
 function App() {
   const [mounted, setMounted] = React.useState(false);
   const [currentPath, setCurrentPath] = React.useState(window.location.pathname);
-  const [clientBalance, setClientBalance] = React.useState(0);
 
   React.useEffect(() => {
-    //Creacion del observer que comprueba si hay cambios en el DOM y cambia el valor de currentPath
+    //Creacion de un observer que comprueba si hay cambios en el DOM y cambia el valor de currentPath
     const mutationObserver = new MutationObserver(function(mutations) {
       if (mutations) {
         setCurrentPath(window.location.pathname);
@@ -43,8 +42,8 @@ function App() {
   return (
     !mounted
     ? <div>Loading...</div>
-    : <div id='page' className='bg-fondo_caballo bg-cover h-screen w-screen flex flex-col'>
-      <ClientBalanceContext.Provider value={{clientBalance, setClientBalance}}>
+    : <div id='page' className='flex flex-col w-screen h-screen bg-fondo_caballo bg-cover'>
+      <MyContextProvider>
         <BrowserRouter>
           <Header path={currentPath}/>
 
@@ -60,7 +59,7 @@ function App() {
 
           <Footer/>
         </BrowserRouter>
-      </ClientBalanceContext.Provider>
+      </MyContextProvider>
       </div>
   );
 }
