@@ -2,6 +2,7 @@ import React from 'react'
 import { faCheck, faCog, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MyContext } from './helpers/MyContext';
+import ClaimButton from './ClaimButton';
 
 const MyBets = () => {
   const [error, setError] = React.useState(null);
@@ -31,33 +32,6 @@ const MyBets = () => {
       setError(e);
     });
   }, [token, error, clientBalance])
-
-
-  const claimBet = (amount, bet_id) => {
-    fetch('http://127.0.0.1:5000/api/client/claim', {
-      headers:{
-        Authorization: 'Bearer ' + token,
-        "Content-Type": "application/json"
-      },
-      method: "PATCH",
-      body: JSON.stringify({
-        reward: amount,
-        idBet: bet_id
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        setError(data.message);
-        return
-      }
-      setClientBalance(data.new_cash);
-      setError(null);
-    })
-    .catch(e => {
-      setError(e);
-    });
-  }
 
 
   return (
@@ -106,35 +80,7 @@ const MyBets = () => {
                   </td>
                   <td className='flex flex-col items-center'>
                     {row.payment_amount} €
-                    {row.win
-                      ? (row.claimed
-                        ? (
-                          <button disabled
-                            className='w-20 h-8 mb-1 rounded button-shadow text-slate-500 bg-slate-300 cursor-not-allowed
-                            sm:w-24 sm:h-10 
-                            md:w-28'
-                          >
-                            CLAIMED
-                          </button>
-                        )
-                        : (
-                          <button onClick={() => claimBet(row.payment_amount, row.id)}
-                            className='w-16 h-8 mb-1 rounded button-shadow bg-dorado 
-                            sm:w-20 sm:h-10'
-                          >
-                            CLAIM
-                          </button>
-                        )
-                      )
-                      : (
-                        <button disabled
-                          className='w-16 h-8 mb-1 rounded button-shadow text-slate-500 bg-slate-300 cursor-not-allowed
-                          sm:w-20 sm:h-10'
-                        >
-                          CLAIM
-                        </button>
-                      )
-                    }
+                    <ClaimButton row={row}/>
                   </td>
                 </tr>
               )})

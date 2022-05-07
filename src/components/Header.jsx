@@ -20,21 +20,15 @@ const Header = (props) => {
     if (props.path !== "/") {
         return (
             <header className='flex flex-wrap justify-between items-center bg-marron text-amarillo-claro'>
-                <div className='flex justify-between items-center'>
-                    <LogoBlanco aspect="w-full max-w-small -ml-12 
-                                        lg:max-w-small lg:-ml-6
-                                        xl:ml-0"/>
-                    <p className='-ml-14 font-cylburn text-4xl 
-                                lg:-ml-12 lg:text-5xl
-                                xl:text-5xl'>
-                            Winning Horse
+                <Link to='/' className='flex justify-between items-center'>
+                    <LogoBlanco aspect="w-full max-w-small -ml-12 lg:max-w-small lg:-ml-6 xl:ml-0"/>
+                    <p className='-ml-14 font-cylburn text-4xl lg:-ml-12 lg:text-5xl xl:text-5xl'>
+                        Winning Horse
                     </p>
-                </div>
-                {
-                    props.path.includes("/main") && (
-                        <BurgerMenu path={props.path}/>
-                    )
-                }
+                </Link>
+
+                { props.path.includes("/main") && <BurgerMenu path={props.path}/> }
+                
                 {
                     props.path === "/login" ? 
                     <Link to='/register' className='self-center mr-5 text-xl font-montaga hover:underline 
