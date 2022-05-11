@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightFromBracket, faBars, faClose, faFileLines, faIdCard, faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
 
 const BurgerMenu = (props) => {
-
   const [active, setActive] = React.useState(false);
 
   const showMenu = () => {
@@ -12,7 +11,6 @@ const BurgerMenu = (props) => {
   }
   const logout = () => {
     localStorage.removeItem("access_token");
-    localStorage.removeItem("username");
   }
  
   return (

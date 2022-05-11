@@ -55,10 +55,10 @@ const MyBets = () => {
         {
           !mounted
           ? <tr className='h-80'>
-              <td colSpan={6}><FontAwesomeIcon icon={faCog} color='copper' spin/> Loading...</td>
+              <td colSpan={7}><FontAwesomeIcon icon={faCog} color='copper' spin/> Loading...</td>
             </tr> 
           : (response.length === 0 
-            ? <tr className='h-80'><td colSpan={6}>You haven't placed any bets yet</td></tr>
+            ? <tr className='h-80'><td colSpan={7}>You haven't placed any bets yet</td></tr>
             : (response.map(row =>{
               return(
                 <tr key={row.id} className='h-14 even:bg-amarillo-oscuro'>
@@ -70,11 +70,11 @@ const MyBets = () => {
                   <td>
                   {
                     row.win === null
-                    ? <FontAwesomeIcon icon={faMinus} size="2xl" color='black' />
+                    ? <FontAwesomeIcon icon={faMinus} size="xl" color='black' />
                     : (
                       row.win
-                      ? <FontAwesomeIcon icon={faCheck} size="2xl" color='green' />
-                      : <FontAwesomeIcon icon={faXmark} size="2xl" color='red' />
+                      ? <FontAwesomeIcon icon={faCheck} size="xl" color='green' />
+                      : <FontAwesomeIcon icon={faXmark} size="xl" color='red' />
                     )
                   }
                   </td>

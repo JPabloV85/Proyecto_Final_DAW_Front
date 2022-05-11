@@ -55,6 +55,7 @@ function App() {
             <Route path="/main/new_bet" element={<Main section={"/new_bet"} />}/>
             <Route path="/main/horses" element={<Main section={"/horses"} />}/>
             <Route path="/main/horse_detail" element={<Main section={"/horse_detail"} />}/>
+            <Route path="/main/profile" element={<Main section={"/profile"} />}/>
           </Routes>
 
           <Footer/>

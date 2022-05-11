@@ -7,6 +7,7 @@ import Horses from './Horses';
 import HorseDetail from './HorseDetail';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
+import Profile from './Profile';
 
 const Main = (props) => {
   const [mounted, setMounted] = React.useState(false);  
@@ -26,14 +27,14 @@ const Main = (props) => {
 
   return (
     <main className={
-      props.section !== "/horse_detail"
+      props.section !== "/horse_detail" && props.section !== "/profile"
       ? 'flex h-full items-center py-5 overflow-auto font-montaga bg-marron lg:pr-5 xl:pr-10'
       : 'flex h-full items-center overflow-auto font-montaga bg-marron'
     }>
       { props.section !== "/horse_detail" && <DesktopMenu section={props.section}/>}
       
       <section className={
-        props.section !== "/horse_detail"
+        props.section !== "/horse_detail" && props.section !== "/profile"
         ? 'h-full grow overflow-auto'
         : 'flex justify-center grow p-3'
       }>
@@ -49,6 +50,7 @@ const Main = (props) => {
             : props.section === "/new_bet" ? <NewBet/>
             : props.section === "/horses" ? <Horses race_id={race_id}/>
             : props.section === "/horse_detail" ? <HorseDetail horse_id={horse_id}/>
+            : props.section === "/profile" ? <Profile/>
             : null
           )
         }

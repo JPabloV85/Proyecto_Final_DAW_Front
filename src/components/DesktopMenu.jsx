@@ -5,12 +5,11 @@ import { faArrowRightFromBracket, faFileLines, faIdCard, faMoneyBillTransfer } f
 
 const Menu = (props) => {
 
-  const logout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("username");
-  }
+    const logout = () => {
+        localStorage.removeItem("access_token");
+    }
 
-  return (
+    return (
     <aside className='hidden items-center mx-10 lg:flex xl:mx-20'>
         <ul className='flex flex-col items-end text-3xl text-white'>
             <li className="mb-20 hover:underline">
@@ -41,7 +40,7 @@ const Menu = (props) => {
             </li>
         </ul>
     </aside>
-  )
+    )
 }
 
 export default Menu

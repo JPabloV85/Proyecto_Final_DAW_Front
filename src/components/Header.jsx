@@ -15,7 +15,7 @@ const Header = (props) => {
         return () => {
           window.removeEventListener('resize', onResize);
         }
-    }, []);
+    }, [windowWidth]);
 
     if (props.path !== "/") {
         return (
@@ -42,7 +42,7 @@ const Header = (props) => {
                             Sign in
                     </Link> 
                     :
-                    (props.path !== "/main/horse_detail" || windowWidth >= 1024) && <ClientBalance/>
+                    (props.path !== "/main/horse_detail" && props.path !== "/main/profile" || windowWidth >= 1024) && <ClientBalance/>
                 }
             </header>
         )
