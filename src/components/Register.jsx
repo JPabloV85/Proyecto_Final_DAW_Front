@@ -10,20 +10,13 @@ const Register = () => {
     const [error, setError] = React.useState(null);
 
     const submit = (e) => {
-        e.preventDefault();        
-        if (!validate()) return;
-
+        e.preventDefault();
+        const formData  = new FormData(document.querySelector("form"));
+        if (!validate(formData)) return;
+        
         fetch("http://127.0.0.1:5000/api/client/register", {
-            headers:{
-                "Content-Type": "application/json" //"multipart/form-data"
-            },
             method: "POST",
-            body: JSON.stringify({
-                username: username,
-                email: email,
-                cif: nif,
-                password: password,
-            })
+            body: formData
         })
         .then(response => {
             if (!response.ok) return response.json().then(error => { throw new Error(error) })
@@ -49,44 +42,43 @@ const Register = () => {
         });
     }
 
-    function validate() {
-        const nifImage = document.querySelector("input[type=file]").files[0];
-        if (!username.trim()) {
+    function validate(data) {
+        if (!data.get("username").trim()) {
             setError("Field Username cannot be empty.");
             return false;
         }
-        if (!nif.trim()) {
+        if (!data.get("nif").trim()) {
             setError("Field NIF cannot be empty.");
             return false;
         }
-        if (!email.trim()) {
+        if (!data.get("email").trim()) {
             setError("Field Email cannot be empty.");
             return false;
         }
-        if (!password.trim()) {
+        if (!data.get("password").trim()) {
             setError("Field Password cannot be empty.");
             return false;
         }
-        if (password.length < 6) {
+        if (data.get("password").length < 6) {
             setError("Your password must contain 6 or more characters.");
             return
           }
-        if (password !== confirm) {
+        if (data.get("password") !== data.get("confirm")) {
             setError("Fields Password and Confirm do not match.");
             return false;
         }
-        if (!birth.trim()) {
+        if (!data.get("birth").trim()) {
             setError("Field Birth date cannot be empty.");
             return false;
         }
-        if (getAge(birth) < 18) {
+        if (getAge(data.get("birth")) < 18) {
             setError("You have to be over 18 years old to register.");
             return false;
-        }/*
-        if (nifImage == null) {
+        }
+        if (data.get("image").size === 0) {
             setError("Please, upload an image of your ID card.");
             return false;
-        }*/
+        }
         setError(null);
         return true;
     }

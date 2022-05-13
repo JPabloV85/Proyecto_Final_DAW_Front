@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { MyContext } from './helpers/MyContext';
 
-const Profile = () => {
+const ClientProfile = () => {
     const [error, setError] = React.useState(null);
     const [response, setResponse] = React.useState(null);
     const [imageURL, setImageURL] = React.useState("");
@@ -131,7 +131,7 @@ const Profile = () => {
                         <div className='flex flex-col items-start w-1/2'>
                             <p>&nbsp;&nbsp;&nbsp;&nbsp;{response.runs_horses.length}</p>
                             {
-                                response.wonBets !== 0 
+                                response.wonBets !== 0
                                 ?   <p>
                                         &nbsp;&nbsp;&nbsp;&nbsp;{response.wonBets} 
                                         &nbsp;({(response.wonBets / response.runs_horses.length * 100).toFixed(2)}%)
@@ -249,7 +249,7 @@ const Profile = () => {
                                         response.wonBets !== 0 
                                         ?   <p>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;{response.wonBets} 
-                                                &nbsp;({response.wonBets / response.runs_horses.length * 100}%)
+                                                &nbsp;({(response.wonBets / response.runs_horses.length * 100).toFixed(2)}%)
                                             </p>
                                         : <p>&nbsp;&nbsp;&nbsp;&nbsp;{response.wonBets}</p>
                                     }
@@ -268,4 +268,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default ClientProfile

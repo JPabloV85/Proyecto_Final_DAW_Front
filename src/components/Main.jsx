@@ -7,7 +7,7 @@ import Horses from './Horses';
 import HorseDetail from './HorseDetail';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
-import Profile from './Profile';
+import ClientProfile from './ClientProfile';
 
 const Main = (props) => {
   const [mounted, setMounted] = React.useState(false);  
@@ -50,7 +50,7 @@ const Main = (props) => {
             : props.section === "/new_bet" ? <NewBet/>
             : props.section === "/horses" ? <Horses race_id={race_id}/>
             : props.section === "/horse_detail" ? <HorseDetail horse_id={horse_id}/>
-            : props.section === "/profile" ? <Profile/>
+            : props.section === "/profile" ? <ClientProfile/>
             : null
           )
         }
