@@ -73,8 +73,8 @@ const Profile = () => {
             }
         })
         .catch(e => {
-            setError(e);
-            alert(error);
+            setError(e.message);
+            console.log(error);
         });
     }
 
@@ -134,7 +134,7 @@ const Profile = () => {
                                 response.wonBets !== 0 
                                 ?   <p>
                                         &nbsp;&nbsp;&nbsp;&nbsp;{response.wonBets} 
-                                        &nbsp;({response.wonBets / response.runs_horses.length * 100}%)
+                                        &nbsp;({(response.wonBets / response.runs_horses.length * 100).toFixed(2)}%)
                                     </p>
                                 : <p>&nbsp;&nbsp;&nbsp;&nbsp;{response.wonBets}</p>
                             }

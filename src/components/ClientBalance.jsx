@@ -16,6 +16,7 @@ const ClientBalance = () => {
         })
         .then(response => response.json())
         .then(data => {
+            if (data.error) throw new Error(data.message);
             setClientBalance(data.cash);            
             fetch(`http://127.0.0.1:5000/static/images/${data.image}`, {
                 headers:{
@@ -28,13 +29,11 @@ const ClientBalance = () => {
                 const imageObjectURL = URL.createObjectURL(imageBlob);
                 setImageURL(imageObjectURL);
                 setError(null);
-            })
-            .catch(e => {
-                setError(e);
             });
         })
         .catch(e => {
-            setError(e);
+            setError(e.message);
+            console.log(error);
         });
     }, [token, error, setClientBalance])
     

@@ -21,6 +21,7 @@ const HorseDetail = (props) => {
         })
         .then(response => response.json())
         .then(data => { 
+            if (data.error) throw new Error(data.message);
             setResponse(data);          
             fetch(`http://127.0.0.1:5000/static/images/${data.image}`, {
                 headers:{
@@ -34,13 +35,11 @@ const HorseDetail = (props) => {
                 setImageURL(imageObjectURL);
                 setMounted(true);
                 setError(null);
-            })
-            .catch(e => {
-                setError(e);
             });
         })
         .catch(e => {
-            setError(e);
+            setError(e.message);
+            console.log(error);
         });
     }, [token, error, horse_id])
 

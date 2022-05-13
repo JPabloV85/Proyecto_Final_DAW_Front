@@ -25,16 +25,13 @@ const Horses = (props) => {
     })
     .then(response => response.json())
     .then(data => {
-      if (data.error) {
-        setError(data.message);
-        return
-      }
+      if (data.error) throw new Error(data.message);
       setResponse(data);
       setError(null);
       setMounted(true);
     })
     .catch(e => {
-      setError(e);
+      setError(e.message);
       console.log(error);
     });
   }, [token, error, clientBalance, race_id])
@@ -60,14 +57,12 @@ const Horses = (props) => {
       })
       .then(response => response.json())
       .then(data => {
-        if (data.error) {
-          setError(data.message);
-          return
-        }
+        if (data.error) throw new Error(data.message);
         setClientBalance(data.new_cash);
+        setError(null);
       })
       .catch(e => {
-        setError(e);
+        setError(e.message);
       });
     }
   }

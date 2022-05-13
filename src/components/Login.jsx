@@ -23,17 +23,14 @@ const Login = () => {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.error) {
-                setError(data.message);
-                return
-            }
+            if (data.error) throw new Error(data.message);
             localStorage.setItem("access_token", data.access_token);
             alert("Login successful!");
+            setError(null);
             navigate("/main/my_bets");
         })
         .catch(e => {
-            setError(e);
-            alert(error);
+            setError(e.message);
         });
     }
 

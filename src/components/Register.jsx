@@ -9,13 +9,13 @@ const Register = () => {
     const [birth, setBirthDate] = React.useState("");
     const [error, setError] = React.useState(null);
 
-    const submit = (e) => {        
+    const submit = (e) => {
         e.preventDefault();        
         if (!validate()) return;
 
-        fetch("http://127.0.0.1:5000/api/client", {
+        fetch("http://127.0.0.1:5000/api/client/register", {
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json" //"multipart/form-data"
             },
             method: "POST",
             body: JSON.stringify({
@@ -26,15 +26,26 @@ const Register = () => {
             })
         })
         .then(response => {
-            if(response.ok) alert("Registration successful!");
-            if(response.json()?.error) {
-                setError(response.json()?.message);
-                return
-            }
+            if (!response.ok) return response.json().then(error => { throw new Error(error) })
+            alert("Registration successful!");
+            setUsername("");
+            setNif("");
+            setEmail("");
+            setPassword("");
+            setConfirm("");
+            setBirthDate("");
+            setError(null);
         })
         .catch(e => {
-            setError(e);
-            alert(error);
+            if (e.message === "UNIQUE constraint failed: user.username") {
+                setError("Username already in use.");
+            }
+            if (e.message === "UNIQUE constraint failed: client.cif") {
+                setError("NIF already in use.");
+            }
+            if (e.message === "UNIQUE constraint failed: user.email") {
+                setError("E-mail already in use.");
+            }
         });
     }
 
@@ -71,11 +82,11 @@ const Register = () => {
         if (getAge(birth) < 18) {
             setError("You have to be over 18 years old to register.");
             return false;
-        }
+        }/*
         if (nifImage == null) {
             setError("Please, upload an image of your ID card.");
             return false;
-        }
+        }*/
         setError(null);
         return true;
     }
@@ -112,6 +123,7 @@ const Register = () => {
                             type="text"
                             id="username"
                             name="username"
+                            value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             className="custom-input lg:w-64"
                         />
@@ -122,6 +134,7 @@ const Register = () => {
                             type="text"
                             id="nif"
                             name="nif"
+                            value={nif}
                             onChange={(e) => setNif(e.target.value)}
                             className="custom-input lg:w-64"
                         />
@@ -132,6 +145,7 @@ const Register = () => {
                             type="email"
                             id="email"
                             name="email"
+                            value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="custom-input lg:w-64"
                         />
@@ -142,6 +156,7 @@ const Register = () => {
                             type="password"
                             id="password"
                             name="password"
+                            value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="custom-input lg:w-64"
                         />
@@ -152,6 +167,7 @@ const Register = () => {
                             type="password"
                             id="confirm"
                             name="confirm"
+                            value={confirm}
                             onChange={(e) => setConfirm(e.target.value)}
                             className="custom-input lg:w-64"
                         />
@@ -162,6 +178,7 @@ const Register = () => {
                             type="date"
                             id="birth"
                             name="birth"
+                            value={birth}
                             onChange={(e) => setBirthDate(e.target.value)}
                             className="custom-input text-lg lg:w-64"
                         />

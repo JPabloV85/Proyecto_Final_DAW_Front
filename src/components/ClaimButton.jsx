@@ -20,16 +20,13 @@ const ClaimButton = (props) => {
     })
     .then(response => response.json())
     .then(data => {
-      if (data.error) {
-        setError(data.message);
-        return
-      }
+      if (data.error) throw new Error(data.message);
       setClientBalance(data.new_cash);
       setError(null);
     })
     .catch(e => {
-      setError(e);
-      alert(error);
+      setError(e.message);
+      console.log(error);
     });
   }
 
