@@ -35,7 +35,7 @@ const ClientBalance = () => {
             setError(e.message);
             console.log(error);
         });
-    }, [token, error, setClientBalance])
+    }, [token, error, clientBalance, setClientBalance])
     
 
   return (

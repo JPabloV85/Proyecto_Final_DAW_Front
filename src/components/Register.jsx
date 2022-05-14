@@ -14,7 +14,7 @@ const Register = () => {
         const formData  = new FormData(document.querySelector("form"));
         if (!validate(formData)) return;
         
-        fetch("http://127.0.0.1:5000/api/client/register", {
+        fetch("http://127.0.0.1:5000/api/user/register", {
             method: "POST",
             body: formData
         })
