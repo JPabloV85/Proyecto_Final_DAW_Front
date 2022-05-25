@@ -71,7 +71,7 @@ const HorseDetail = (props) => {
                             </div>
                         </div>
                         <div className='flex flex-col items-center space-y-2'>
-                            <p>Total races: {response.runs.length}</p>
+                            <p>Total races: {response.timesFirst + response.timesSecond + response.timesThird + response.timesOtherPosition}</p>
                             <div className='flex justify-between space-x-2 text-5xl'>                    
                                 <div className='relative flex flex-col items-center mt-5'>
                                     <FontAwesomeIcon icon={faTrophy} color='silver' filter='drop-shadow(2px 2px 1px black)'/>
@@ -106,7 +106,7 @@ const HorseDetail = (props) => {
                             <p>AGE: {response.age} months</p>
                             <p>STUD: {response.stud.name}, {response.stud.location}</p>
                         </div>
-                        <p>Total races: {response.runs.length}</p>
+                        <p>Total races: {response.timesFirst + response.timesSecond + response.timesThird + response.timesOtherPosition}</p>
                         <div className='flex justify-between space-x-2 text-6xl'>                    
                             <div className='relative flex flex-col items-center mt-5'>
                                 <FontAwesomeIcon icon={faTrophy} color='silver' filter='drop-shadow(2px 2px 1px black)'/>

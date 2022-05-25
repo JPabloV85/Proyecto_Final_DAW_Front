@@ -127,10 +127,10 @@ const ClientProfile = () => {
                             <h3>BALANCE:</h3>
                         </div>
                         <div className='flex flex-col items-start w-1/2 ml-3'>
-                            <p>{response.runs_horses.length}</p>
+                            <p>{response.number_of_bets}</p>
                             {
                                 response.wonBets !== 0
-                                ? <p>{response.wonBets} ({(response.wonBets / response.runs_horses.length * 100).toFixed(2)}%)</p>
+                                ? <p>{response.wonBets} ({(response.wonBets / response.number_of_bets * 100).toFixed(2)}%)</p>
                                 : <p>{response.wonBets}</p>
                             }
                             <p>{response.moneyEarned} €</p>
@@ -240,10 +240,10 @@ const ClientProfile = () => {
                                     <h3>BALANCE:</h3>
                                 </div>
                                 <div className='flex flex-col items-start w-1/3'>
-                                    <p>{response.runs_horses.length}</p>
+                                    <p>{response.number_of_bets}</p>
                                     {
                                         response.wonBets !== 0 
-                                        ? <p>{response.wonBets} ({(response.wonBets / response.runs_horses.length * 100).toFixed(2)}%)</p>
+                                        ? <p>{response.wonBets} ({(response.wonBets / response.number_of_bets * 100).toFixed(2)}%)</p>
                                         : <p>{response.wonBets}</p>
                                     }
                                     <p>{response.moneyEarned} €</p>

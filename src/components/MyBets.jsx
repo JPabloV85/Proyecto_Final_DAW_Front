@@ -43,8 +43,8 @@ const MyBets = () => {
           <th scope='col'>RACE</th>
           <th scope='col'>HORSE</th>
           <th scope='col'>DATE</th>
-          { windowWidth >= 1400 && (<th scope='col'>TIME</th>) }
-          <th scope='col'>BET</th>
+          { windowWidth >= 1250 && (<th scope='col'>TIME</th>) }
+          { windowWidth >= 500 && (<th scope='col'>BET</th>) }          
           <th scope='col'>WIN</th>
           <th scope='col'>REWARD</th>
         </tr>
@@ -63,8 +63,8 @@ const MyBets = () => {
                   <td>{row.race_tag}</td>
                   <td>{row.horse_name}</td>
                   <td>{row.date}</td>
-                  {windowWidth >= 1400 && <td>{row.time}</td>}
-                  <td>{row.bet_amount} €</td>
+                  {windowWidth >= 1250 && <td>{row.time}</td>}
+                  {windowWidth >= 500 && <td>{row.bet_amount} €</td>}                  
                   <td>
                   {
                     row.win === null
