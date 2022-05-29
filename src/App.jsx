@@ -8,6 +8,8 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import Main from './components/Main';
+import videoMp4 from './video/many.mp4';
+import videoWebm from './video/many_webm.webm';
 
 function App() {
   const [mounted, setMounted] = React.useState(false);
@@ -42,7 +44,18 @@ function App() {
   return (
     !mounted
     ? <div>Loading...</div>
-    : <div id='page' className='flex flex-col w-screen h-screen bg-fondo_caballo bg-cover'>
+    : <div id='page' className='flex flex-col w-screen h-screen'>
+      {
+        currentPath == "/" && (
+          <div className='rotateY -z-10 absolute w-full h-full overflow-hidden'>        
+          <video autoPlay loop muted className="min-w-max min-h-max absolute right-20 bottom-1">/
+            <source src={videoMp4} type="video/mp4" />
+            <source src={videoWebm} type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        )
+      }
       <MyContextProvider>
         <BrowserRouter>
           <Header path={currentPath}/>

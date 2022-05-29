@@ -12,9 +12,6 @@ module.exports = {
         'montaga': 'Montaga',
         'cylburn': 'Cylburn'
       },
-      backgroundImage: {
-        'fondo_caballo': "url('./image/corredor.jpg')"
-      },
       screens: {
         'tablet': '600px',
         'desktop_full': '1400px',
