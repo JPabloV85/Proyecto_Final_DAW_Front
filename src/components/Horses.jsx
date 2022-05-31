@@ -8,7 +8,7 @@ const Horses = (props) => {
   const [error, setError] = React.useState(null);
   const [response, setResponse] = React.useState(null);
   const [mounted, setMounted] = React.useState(false);
-  const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}] = React.useContext(MyContext);
+  const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);
   const race_id = props.race_id;
   const token = localStorage.getItem("access_token");
   
@@ -39,6 +39,7 @@ const Horses = (props) => {
   const makeBet = (index, horse_id) => {
     const amount = document.getElementById("amount"+index).value;
     const position = document.getElementById("position"+index).value;
+    const profit = document.getElementById("profit"+index).innerHTML.substring(1);
 
     if (position == '0') return alert("You must set your guessed position.");
     if (!validateAmount(amount)) return;
@@ -53,6 +54,7 @@ const Horses = (props) => {
       body: JSON.stringify({
         bet_amount: amount,
         bet_position: position,
+        benefit_ratio: profit,
         race_id: props.race_id,
         horse_id: horse_id
       })
@@ -81,44 +83,27 @@ const Horses = (props) => {
     return true;
   }
 
-  const calculateBenefit = (resp, pos, horse_id) => {
-    var totalPosition = 0;
-    resp.forEach(horse => {
-      totalPosition += ((horse.timesFirst/horse.runs_completed).toFixed(2)*100);
-    });
-
+  const calculateProfit = (resp, pos, horse_id) => {
     var horseRatio = 0;
-    if (pos == 1){
+    var totalPosition = 0;
+    var times = 0;
+    if (pos != 0) {
       resp.forEach(horse => {
-        if(horse_id === horse.horse_id){
-          let individualPosition = ((horse.timesFirst/horse.runs_completed).toFixed(2)*100);
-          horseRatio = (100 /((individualPosition*100)/totalPosition)).toFixed(2);
-          if (individualPosition < 1) horseRatio = 100;
-        }
+        if (pos == 1) {times = horse.timesFirst} 
+        else if (pos == 2) {times = horse.timesSecond} 
+        else if (pos == 3) {times = horse.timesThird} 
+        else {times = horse.timesOtherPosition};
+        horse.runs_completed != 0 ? totalPosition += ((times/horse.runs_completed).toFixed(2)*100) : totalPosition += 0;
       });
-    }
-    else if (pos == 2){
       resp.forEach(horse => {
+        let individualPosition = 0;
+        if (pos == 1) {times = horse.timesFirst} 
+        else if (pos == 2) {times = horse.timesSecond} 
+        else if (pos == 3) {times = horse.timesThird} 
+        else {times = horse.timesOtherPosition};
+
         if(horse_id === horse.horse_id){
-          let individualPosition = ((horse.timesSecond/horse.runs_completed).toFixed(2)*100); 
-          horseRatio = (100 /((individualPosition*100)/totalPosition)).toFixed(2);
-          if (individualPosition < 1) horseRatio = 100;
-        }
-      });
-    }
-    else if (pos == 3){
-      resp.forEach(horse => {
-        if(horse_id === horse.horse_id){
-          let individualPosition = ((horse.timesThird/horse.runs_completed).toFixed(2)*100);
-          horseRatio = (100 /((individualPosition*100)/totalPosition)).toFixed(2);
-          if (individualPosition < 1) horseRatio = 100;
-        }
-      });
-    }
-    else {
-      resp.forEach(horse => {
-        if(horse_id === horse.horse_id){
-          let individualPosition = ((horse.timesOtherPosition/horse.runs_completed).toFixed(2)*100);
+          horse.runs_completed != 0 && (individualPosition = ((times/horse.runs_completed).toFixed(2)*100));
           horseRatio = (100 /((individualPosition*100)/totalPosition)).toFixed(2);
           if (individualPosition < 1) horseRatio = 100;
         }
@@ -128,12 +113,13 @@ const Horses = (props) => {
   }
 
   return (
-    <table className='w-full text-center text-sm text-marron bg-dorado
-          sm:text-lg
-          md:text-xl
-          lg:rounded-md'>
+    <table className={
+      !dark
+      ? 'w-full text-center text-sm text-marron bg-dorado sm:text-lg md:text-xl lg:rounded-md border-2 border-amarillo-oscuro'
+      : 'w-full text-center text-sm text-marron bg-dorado sm:text-lg md:text-xl lg:rounded-md'
+    }>
       <caption className='hidden'>Signed horses to compete</caption>
-      <thead className='h-14'>
+      <thead className={!dark ? 'h-14 text-dorado bg-marron' : 'h-14'}>
         <tr>
           <th scope='col'>HORSE<br />NAME</th>
           { windowWidth >= 600 && (<th scope='col'>WIN<br />RATIO</th>) }
@@ -164,8 +150,8 @@ const Horses = (props) => {
                     <select  id={"position"+index} className='w-12 border-2 border-marron md:w-1/3'
                       onChange={function () {
                         let position = document.querySelector("#position"+index).value;
-                        let td = document.querySelector("#benefit"+index);
-                        td.innerHTML = "x" + calculateBenefit(response, position, horseRow.horse_id);
+                        let tdProfit = document.querySelector("#profit"+index);
+                        tdProfit.innerHTML = "x" + calculateProfit(response, position, horseRow.horse_id);
                     }}>
                       <option value='0'>--</option>
                       {
@@ -179,7 +165,7 @@ const Horses = (props) => {
                     <input type="text" name={"amount" + index} id={"amount"+index} 
                       className='w-14 ml-3 border-2 border-marron sm:w-20' />€
                   </td>
-                  <td id={'benefit'+index}>x0</td>
+                  <td id={'profit'+index}>x0</td>
                   <td>
                     {
                       horseRow.bet_done
