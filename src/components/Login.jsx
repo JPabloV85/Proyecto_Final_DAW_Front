@@ -1,11 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { MyContext } from './helpers/MyContext';
 
 const Login = () => {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [error, setError] = React.useState(null);
     const navigate = useNavigate();
+    const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);
 
     const login = (e) => {
         e.preventDefault();
@@ -48,15 +50,28 @@ const Login = () => {
     }
 
   return (
-    <main className='flex flex-grow items-center justify-center px-5 pb-5 bg-marron'>    
-        <form method="post" onSubmit={login} className="flex flex-col items-center font-montaga text-white">
+    <main className={
+        !dark
+        ?'flex flex-grow items-center justify-center px-5 pb-5 bg-amarillo-claro'
+        :'flex flex-grow items-center justify-center px-5 pb-5 bg-marron'
+    }>    
+        <form method="post" onSubmit={login} 
+            className={
+                !dark
+                ? "flex flex-col items-center font-montaga text-marron"
+                : "flex flex-col items-center font-montaga text-white"
+            }>
             <fieldset className='flex flex-col items-center text-xl lg:text-2xl'>
-                <legend className="m-auto mb-14 text-5xl text-amarillo-claro">
+                <legend className={!dark ? "m-auto mb-14 text-5xl text-marron": "m-auto mb-14 text-5xl text-amarillo-claro"}>
                     Sign in
                 </legend>
                 {
                     error && (
-                        <p className='-mt-6 mb-8 text-center text-xl text-amarillo-claro'>
+                        <p className={
+                            !dark
+                            ? '-mt-6 mb-8 text-center text-xl text-red-600'
+                            : '-mt-6 mb-8 text-center text-xl text-amarillo-claro'
+                        }>
                             {error}
                         </p>
                     )
@@ -69,7 +84,7 @@ const Login = () => {
                             id="username"
                             name="username"
                             onChange={(e) => setUsername(e.target.value)}
-                            className="custom-input lg:w-64"
+                            className={!dark ? "custom-input-dark lg:w-64" : "custom-input lg:w-64"}
                         />
                     </label> 
                     <label htmlFor="password">
@@ -79,10 +94,10 @@ const Login = () => {
                             id="password"
                             name="password"
                             onChange={(e) => setPassword(e.target.value)}
-                            className="custom-input lg:w-64"
+                            className={!dark ? "custom-input-dark lg:w-64" : "custom-input lg:w-64"}
                         />
                     </label>
-                    <button type="submit" className='self-end mt-10 text-3xl text-amarillo-claro hover:underline'>
+                    <button type="submit" className={!dark ? 'self-end mt-10 text-3xl text-marron hover:underline' : 'self-end mt-10 text-3xl text-amarillo-claro hover:underline'}>
                         Send
                     </button> 
                 </div>
