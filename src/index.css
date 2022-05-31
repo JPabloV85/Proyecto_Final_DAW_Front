@@ -106,3 +106,8 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.stroke{
+  -webkit-text-stroke-width: 0.75px;
+  -webkit-text-stroke-color: #2C110A;
+}

@@ -6,7 +6,8 @@ module.exports = {
         "dorado": "#F8CB3C",
         "amarillo-claro": "#FCF489",
         "amarillo-oscuro": "#FFE763",
-        "marron": "#2C110A"
+        "marron": "#2C110A",
+        "marron-claro": "#AF875D",
       },
       fontFamily: {
         'montaga': 'Montaga',
