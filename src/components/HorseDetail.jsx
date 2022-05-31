@@ -8,7 +8,7 @@ const HorseDetail = (props) => {
     const [response, setResponse] = React.useState(null);
     const [imageURL, setImageURL] = React.useState("");
     const [mounted, setMounted] = React.useState(false);
-    const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}] = React.useContext(MyContext);
+    const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);
     const horse_id = props.horse_id;
     const token = localStorage.getItem("access_token");
 
@@ -53,17 +53,15 @@ const HorseDetail = (props) => {
         : (
             windowWidth < 700
             ?(
-                <div className='flex flex-col items-center space-y-3 p-3 grow rounded-sm text-marron bg-dorado'>
+                <div className={
+                    !dark
+                    ? 'flex flex-col items-center space-y-3 p-3 grow rounded-sm text-dorado bg-marron'
+                    : 'flex flex-col items-center space-y-3 p-3 grow rounded-sm text-marron bg-dorado'
+                }>
                     <img src={imageURL} alt="horse_image" className='max-w-mid rounded-md'/>
                     <div className='w-full space-y-3 tablet:flex justify-evenly'>
-                        <div className='flex flex-col items-center space-y-2'>
-                            <div className='flex space-x-2 text-2xl'>
-                                <div className='relative flex justify-center items-center'>
-                                    <FontAwesomeIcon icon={faCircle} color='copper'/>
-                                    <p className='absolute text-xl text-dorado'>1</p>
-                                </div>
-                                <p>{response.name}</p>
-                            </div>
+                        <div className='flex flex-col items-center space-y-2'>                            
+                            <p className='text-2xl'>{response.name}</p>
                             <div className='text-center text-sm tablet:text-left'>
                                 <p>BREED: {response.breed}</p>
                                 <p>AGE: {response.age} months</p>
@@ -75,15 +73,15 @@ const HorseDetail = (props) => {
                             <div className='flex justify-between space-x-2 text-5xl'>                    
                                 <div className='relative flex flex-col items-center mt-5'>
                                     <FontAwesomeIcon icon={faTrophy} color='silver' filter='drop-shadow(2px 2px 1px black)'/>
-                                    <p className='absolute text-2xl'>{response.timesSecond}</p>
+                                    <p className={!dark ? 'absolute text-2xl text-marron' : 'absolute text-2xl'}>{response.timesSecond}</p>
                                 </div>
                                 <div className='relative flex flex-col items-center mb-5'>
                                     <FontAwesomeIcon icon={faTrophy} color='yellow' filter='drop-shadow(2px 2px 1px black)'/>
-                                    <p className='absolute text-2xl'>{response.timesFirst}</p>
+                                    <p className={!dark ? 'absolute text-2xl text-marron' : 'absolute text-2xl'}>{response.timesFirst}</p>
                                 </div>
                                 <div className='relative flex flex-col items-center mt-8'>
                                     <FontAwesomeIcon icon={faTrophy} color='copper' filter='drop-shadow(2px 2px black)'/>
-                                    <p className='absolute text-2xl text-dorado'>{response.timesThird}</p>
+                                    <p className={!dark ? 'absolute text-2xl text-marron' : 'absolute text-2xl text-dorado'}>{response.timesThird}</p>
                                 </div>
                             </div>
                         </div>
@@ -92,14 +90,8 @@ const HorseDetail = (props) => {
             )
             : (
                 <div className='relative flex text-marron'>
-                    <img src={imageURL} alt="horse_image" className='max-w-big rounded xl:max-w-xbig desktop_full:max-w-2xbig'/>
-                    <div className='absolute flex space-x-2 ml-10 mt-5 text-4xl'>
-                        <div className='relative flex justify-center items-center'>
-                            <FontAwesomeIcon icon={faCircle} color='copper'/>
-                            <p className='absolute text-3xl text-dorado'>1</p>
-                        </div>
-                        <p>{response.name}</p>
-                    </div>
+                    <img src={imageURL} alt="horse_image" className='max-w-big rounded xl:max-w-xbig desktop_full:max-w-2xbig'/>                    
+                    <p className='absolute ml-10 mt-5 text-4xl'>{response.name}</p>
                     <div className='absolute bottom-0 right-0 flex flex-col items-center space-y-2 mb-3 mr-3 p-2 rounded-md bg-dorado/75'>
                         <div className='text-center'>
                             <p>BREED: {response.breed}</p>
