@@ -8,6 +8,7 @@ import HorseDetail from './HorseDetail';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import ClientProfile from './ClientProfile';
+import { MyContext } from './helpers/MyContext'
 
 const Main = (props) => {
   const [mounted, setMounted] = React.useState(false);  
@@ -16,6 +17,7 @@ const Main = (props) => {
   const {horse_id} = location.state !== null ? location.state : 0;
   const navigate = useNavigate();
   const token = localStorage.getItem("access_token");
+  const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);
 
   React.useEffect(() => {
     if (token === "undefined" || token === null) {
@@ -28,8 +30,16 @@ const Main = (props) => {
   return (
     <main className={
       props.section !== "/horse_detail" && props.section !== "/profile"
-      ? 'flex h-full items-center py-5 overflow-auto font-montaga bg-marron lg:pr-5 xl:pr-10'
-      : 'flex h-full items-center overflow-auto font-montaga bg-marron'
+      ? (
+          !dark
+          ? 'flex h-full items-center py-5 overflow-auto font-montaga bg-amarillo-claro lg:pr-5 xl:pr-10'
+          : 'flex h-full items-center py-5 overflow-auto font-montaga bg-marron lg:pr-5 xl:pr-10'
+        )
+      : (
+          !dark
+          ? 'flex h-full items-center overflow-auto font-montaga bg-amarillo-claro'
+          : 'flex h-full items-center overflow-auto font-montaga bg-marron'
+        )
     }>
       { props.section !== "/horse_detail" && <DesktopMenu section={props.section}/>}
       
