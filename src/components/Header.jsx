@@ -1,12 +1,14 @@
 import React from 'react'
 import LogoBlanco from './svg/LogoBlanco'
+import LogoOscuro from './svg/LogoOscuro'
 import ClientBalance from './ClientBalance'
 import { Link } from 'react-router-dom'
 import BurgerMenu from './BurgerMenu'
 import { MyContext } from './helpers/MyContext'
+import DarkModeButton from './DarkModeButton'
 
 const Header = (props) => {
-    const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}] = React.useContext(MyContext);
+    const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);
 
     React.useEffect(() => {
         setWindowWidth(window.innerWidth);
@@ -17,17 +19,34 @@ const Header = (props) => {
         }
     }, [windowWidth]);
 
-    if (props.path !== "/") {
-        return (
-            <header className='flex flex-wrap justify-between items-center bg-marron text-amarillo-claro'>
+    return ( 
+        props.path !== "/" 
+        ? (
+            <header className={
+                !dark
+                ? 'flex flex-wrap justify-between items-center bg-amarillo-claro text-marron'
+                : 'flex flex-wrap justify-between items-center bg-marron text-amarillo-claro'
+              }>
                 <Link to='/' className='flex justify-between items-center'>
-                    <LogoBlanco aspect="w-full max-w-small -ml-12 lg:max-w-small lg:-ml-6 xl:ml-0"/>
+                    {!dark
+                    ? <LogoOscuro aspect="w-full max-w-small -ml-12 lg:max-w-small lg:-ml-6 xl:ml-0"/>
+                    : <LogoBlanco aspect="w-full max-w-small -ml-12 lg:max-w-small lg:-ml-6 xl:ml-0"/>
+                    }          
                     <p className='-ml-14 font-cylburn text-4xl lg:-ml-12 lg:text-5xl xl:text-5xl'>
                         Winning Horse
                     </p>
-                </Link>
+                </Link>               
 
-                { props.path.includes("/main") && <BurgerMenu path={props.path}/> }
+                {props.path.includes("/main") && <BurgerMenu path={props.path}/>}                
+                
+                {
+                    (props.path !== "/login" && props.path !== "/register") && 
+                    <DarkModeButton id="darkButton" className={
+                        !dark
+                        ? 'hidden lg:flex items-center space-x-1 text-marron'
+                        : 'hidden lg:flex items-center space-x-1 text-white'
+                      }/> 
+                }
                 
                 {
                     props.path === "/login" ? 
@@ -42,12 +61,12 @@ const Header = (props) => {
                             Sign in
                     </Link> 
                     :
-                    (props.path !== "/main/horse_detail" && props.path !== "/main/profile" || windowWidth >= 1024) && <ClientBalance/>
+                    ((props.path !== "/main/horse_detail" && props.path !== "/main/profile") || windowWidth >= 1024) && <ClientBalance/>
                 }
             </header>
         )
-    }
-    return null;
+        : null
+    )
 }
 
 export default Header
