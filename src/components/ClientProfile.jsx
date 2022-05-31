@@ -12,7 +12,7 @@ const ClientProfile = () => {
     const [email, setEmail] = React.useState("");
     const [nif, setNif] = React.useState("");
     const [submitted, setSubmitted] = React.useState(false);
-    const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}] = React.useContext(MyContext);
+    const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);
     const token = localStorage.getItem("access_token");
 
     React.useEffect(() => {
@@ -106,7 +106,12 @@ const ClientProfile = () => {
         : (
             windowWidth < 700
             ?(
-                <form method="post" onSubmit={submit} className='grow flex flex-col items-center space-y-3 py-3 rounded-sm text-marron bg-amarillo-claro'>
+                <form method="post" onSubmit={submit} 
+                    className={
+                        !dark
+                        ? 'grow flex flex-col items-center space-y-3 py-3 rounded-sm text-marron bg-dorado border-4 border-marron'
+                        : 'grow flex flex-col items-center space-y-3 py-3 rounded-sm text-marron bg-amarillo-claro'
+                    }>
                     <fieldset>
                         <label htmlFor="image">
                             <img src={imageURL} alt="client_image" className='max-w-small rounded-sm border-8 border-dorado'/>
@@ -119,7 +124,7 @@ const ClientProfile = () => {
                         </label>
                     </fieldset>
 
-                    <div className='w-full flex bg-dorado'>
+                    <div className={!dark ? 'w-full flex bg-marron text-amarillo-claro' : 'w-full flex bg-dorado'}>
                         <div className='flex flex-col items-end w-2/3'>
                             <h3>TOTAL BETS:</h3>
                             <h3>WON BETS:</h3>
@@ -182,7 +187,12 @@ const ClientProfile = () => {
                 </form>
             )
             : (
-                <form method="post" onSubmit={submit} className='grow flex flex-col space-y-10 p-5 rounded-sm text-marron bg-amarillo-claro lg:mb-24 lg:mr-10'>
+                <form method="post" onSubmit={submit}                
+                className={
+                    !dark
+                    ? 'grow flex flex-col space-y-10 p-5 rounded-sm text-marron bg-dorado border-4 border-marron lg:mb-24 lg:mr-10'
+                    : 'grow flex flex-col space-y-10 p-5 rounded-sm text-marron bg-amarillo-claro lg:mb-24 lg:mr-10'
+                }>
                     <div className='flex justify-evenly items-center'>
                         <fieldset>
                             <label htmlFor="image">
@@ -232,7 +242,11 @@ const ClientProfile = () => {
                                 />
                             </label>
 
-                            <div className='w-full flex rounded-sm pr-5 drop-shadow-[2px_2px_1px] bg-dorado'>
+                            <div className={
+                                !dark
+                                ? 'w-full flex rounded-sm pr-5 drop-shadow-[2px_2px_1px] bg-marron text-amarillo-claro'
+                                : 'w-full flex rounded-sm pr-5 drop-shadow-[2px_2px_1px] bg-dorado'
+                            }>
                                 <div className='flex flex-col items-end w-2/3 pr-4'>
                                     <h3>TOTAL BETS:</h3>
                                     <h3>WON BETS:</h3>
