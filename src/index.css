@@ -45,8 +45,12 @@
   .rotateY {
     transform: rotateY(180deg);
   }
+  .table-border{
+    border: 2px solid;
+  }
 }
 
+/* Dark mode button */
 .switch {
   position: relative;
   display: inline-block;
@@ -98,7 +102,6 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }

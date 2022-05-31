@@ -8,7 +8,7 @@ const MyBets = () => {
   const [error, setError] = React.useState(null);
   const [response, setResponse] = React.useState(null);
   const [mounted, setMounted] = React.useState(false);
-  const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}] = React.useContext(MyContext);
+  const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);
   const token = localStorage.getItem("access_token");
   
   React.useEffect(() => {
@@ -33,12 +33,13 @@ const MyBets = () => {
 
 
   return (
-    <table className='w-full text-center text-sm text-marron bg-dorado
-        sm:text-lg
-        md:text-xl
-        lg:rounded-md'>
+    <table className={
+      !dark
+      ? 'w-full text-center text-sm text-marron bg-dorado sm:text-lg md:text-xl lg:rounded-md border-2 border-amarillo-oscuro'
+      : 'w-full text-center text-sm text-marron bg-dorado sm:text-lg md:text-xl lg:rounded-md'
+    }>
       <caption className='hidden'>Client bets</caption>
-      <thead className='h-14'>
+      <thead className={!dark ? 'h-14 text-dorado bg-marron' : 'h-14'}>
         <tr>
           <th scope='col'>RACE</th>
           <th scope='col'>HORSE</th>
