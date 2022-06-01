@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MyContext } from './helpers/MyContext';
+import { MyContext } from '../helpers/MyContext';
 
 const Login = () => {
     const [username, setUsername] = React.useState("");

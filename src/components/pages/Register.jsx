@@ -1,5 +1,5 @@
 import React from 'react'
-import { MyContext } from './helpers/MyContext';
+import { MyContext } from '../helpers/MyContext';
 
 const Register = () => {
     const [username, setUsername] = React.useState("");

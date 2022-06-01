@@ -1,5 +1,5 @@
 import React from 'react'
-import { MyContext } from './helpers/MyContext';
+import { MyContext } from '../helpers/MyContext';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faBars, faClose, faFileLines, faIdCard, faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
 import DarkModeButton from './DarkModeButton';
-import { MyContext } from './helpers/MyContext'
+import { MyContext } from '../helpers/MyContext';
 
 const BurgerMenu = (props) => {
   const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);

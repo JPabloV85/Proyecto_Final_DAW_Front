@@ -1,10 +1,10 @@
 import React from 'react'
-import LogoBlanco from './svg/LogoBlanco'
-import LogoOscuro from './svg/LogoOscuro'
+import LogoBlanco from '../svg/LogoBlanco'
+import LogoOscuro from '../svg/LogoOscuro'
 import ClientBalance from './ClientBalance'
 import { Link } from 'react-router-dom'
 import BurgerMenu from './BurgerMenu'
-import { MyContext } from './helpers/MyContext'
+import { MyContext } from '../helpers/MyContext'
 import DarkModeButton from './DarkModeButton'
 
 const Header = (props) => {

@@ -7,7 +7,7 @@ module.exports = {
         "amarillo-claro": "#FCF489",
         "amarillo-oscuro": "#FFE763",
         "marron": "#2C110A",
-        "marron-claro": "#AF875D",
+        "marron-claro": "#AF875D"
       },
       fontFamily: {
         'montaga': 'Montaga',
@@ -18,10 +18,10 @@ module.exports = {
         'desktop_full': '1400px',
       },
       maxWidth: {
-        '2xbig': '660px',
-        'xbig': '630px',
-        'big': '600px',
-        'mid': '300px',
+        '2xbig': '645px',
+        'xbig': '610px',
+        'big': '580px',
+        'mid': '275px',
         'small': '200px',
         'very-small': '70px'
       }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import LogoBlanco from './svg/LogoBlanco';
-import LogoOscuro from './svg/LogoOscuro';
-import { MyContext } from './helpers/MyContext';
+import LogoBlanco from '../svg/LogoBlanco';
+import LogoOscuro from '../svg/LogoOscuro';
+import { MyContext } from '../helpers/MyContext';
 
 const Home = () => {
   const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);

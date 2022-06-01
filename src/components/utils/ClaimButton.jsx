@@ -1,5 +1,5 @@
 import React from 'react'
-import { MyContext } from './helpers/MyContext';
+import { MyContext } from '../helpers/MyContext';
 
 const ClaimButton = (props) => {
   const [error, setError] = React.useState(null);

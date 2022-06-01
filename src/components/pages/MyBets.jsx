@@ -1,8 +1,8 @@
 import React from 'react'
 import { faCheck, faCog, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { MyContext } from './helpers/MyContext';
-import ClaimButton from './ClaimButton';
+import { MyContext } from '../helpers/MyContext';
+import ClaimButton from '../utils/ClaimButton';
 
 const MyBets = () => {
   const [error, setError] = React.useState(null);

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import DesktopMenu from './DesktopMenu';
+import DesktopMenu from '../utils/DesktopMenu';
 import MyBets from './MyBets';
 import NewBet from './NewBet';
 import Horses from './Horses';
@@ -8,7 +8,7 @@ import HorseDetail from './HorseDetail';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import ClientProfile from './ClientProfile';
-import { MyContext } from './helpers/MyContext'
+import { MyContext } from '../helpers/MyContext';
 
 const Main = (props) => {
   const [mounted, setMounted] = React.useState(false);  

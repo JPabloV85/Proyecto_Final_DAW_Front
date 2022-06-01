@@ -1,7 +1,7 @@
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { MyContext } from './helpers/MyContext'
+import { MyContext } from '../helpers/MyContext'
 
 const DarkModeButton = (props) => {
     const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);

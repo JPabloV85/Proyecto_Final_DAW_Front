@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle, faCog, faTrophy } from '@fortawesome/free-solid-svg-icons';
-import { MyContext } from './helpers/MyContext';
+import { faCog, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { MyContext } from '../helpers/MyContext';
 
 const HorseDetail = (props) => {
     const [error, setError] = React.useState(null);

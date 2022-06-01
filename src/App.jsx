@@ -2,12 +2,12 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MyContextProvider } from './components/helpers/MyContext';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
-import Main from './components/Main';
+import Header from './components/utils/Header';
+import Footer from './components/utils/Footer';
+import Home from './components/pages/Home';
+import Login from './components/pages/Login';
+import Register from './components/pages/Register';
+import Main from './components/pages/Main';
 import videoMp4 from './video/many.mp4';
 import videoWebm from './video/many_webm.webm';
 
@@ -48,12 +48,12 @@ function App() {
       {
         currentPath == "/" && (
           <div className='rotateY -z-10 absolute w-full h-full overflow-hidden'>        
-          <video autoPlay loop muted className="min-w-max min-h-max absolute right-20 bottom-1">/
-            <source src={videoMp4} type="video/mp4" />
-            <source src={videoWebm} type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+            <video autoPlay loop muted className="min-w-max min-h-max absolute right-20 bottom-1">/
+              <source src={videoMp4} type="video/mp4" />
+              <source src={videoWebm} type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         )
       }
       <MyContextProvider>
