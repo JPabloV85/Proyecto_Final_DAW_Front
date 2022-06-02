@@ -55,10 +55,10 @@ const HorseDetail = (props) => {
             ?(
                 <div className={
                     !dark
-                    ? 'flex flex-col items-center space-y-3 p-3 grow rounded-sm text-dorado bg-marron'
-                    : 'flex flex-col items-center space-y-3 p-3 grow rounded-sm text-marron bg-dorado'
+                    ? 'flex flex-col items-center space-y-3 p-4 grow rounded-sm text-dorado bg-marron'
+                    : 'flex flex-col items-center space-y-3 p-4 grow rounded-sm text-marron bg-dorado'
                 }>
-                    <img src={imageURL} alt="horse_image" className='max-w-mid rounded-md'/>
+                    <img src={imageURL} alt="horse_image" className={windowWidth < 410 ?'max-w-mid rounded-md':'max-w-xmid rounded-md'}/>
                     <div className='w-full space-y-3 tablet:flex justify-evenly'>
                         <div className='flex flex-col items-center space-y-2'>                            
                             <p className='text-2xl'>{response.name}</p>
@@ -91,9 +91,9 @@ const HorseDetail = (props) => {
             : (
                 <div className='relative flex text-marron'>
                     <img src={imageURL} alt="horse_image" className='max-w-big rounded xl:max-w-xbig desktop_full:max-w-2xbig'/>                    
-                    <p className='absolute ml-10 mt-5 text-4xl'>{response.name}</p>
-                    <div className='absolute bottom-0 right-0 flex flex-col items-center space-y-2 mb-3 mr-3 p-2 rounded-md bg-dorado/75'>
-                        <div className='text-center'>
+                    <p className='absolute ml-10 mt-5 text-4xl text-white'>{response.name}</p>
+                    <div className='absolute bottom-0 right-0 flex flex-col items-center space-y-2 mb-3 mr-3 p-2 rounded-md bg-dorado/60'>
+                        <div className='text-center text-black'>
                             <p>BREED: {response.breed}</p>
                             <p>AGE: {response.age} months</p>
                             <p>STUD: {response.stud.name}, {response.stud.location}</p>

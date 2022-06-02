@@ -28,8 +28,8 @@ const Home = () => {
 
         <h1 className={
           !dark
-          ? 'px-5 -mt-6 font-cylburn text-marron text-7xl lg:text-8xl xl:ml-3 xl:-mt-8'
-          : 'px-5 -mt-6 font-cylburn text-amarillo-claro text-7xl lg:text-8xl xl:ml-3 xl:-mt-8'
+          ? 'px-5 -mt-6 font-cylburn text-center text-marron text-7xl lg:text-8xl xl:ml-3 xl:-mt-8'
+          : 'px-5 -mt-6 font-cylburn text-center text-amarillo-claro text-7xl lg:text-8xl xl:ml-3 xl:-mt-8'
         }>
             Winning Horse
         </h1>

@@ -78,7 +78,7 @@ const Login = () => {
                 }
                 <div className='flex flex-col items-end'>
                     <label htmlFor="username" className='mb-3'>
-                        Username
+                        Username*
                         <input
                             type="text"
                             id="username"
@@ -88,7 +88,7 @@ const Login = () => {
                         />
                     </label> 
                     <label htmlFor="password">
-                        Password
+                        Password*
                         <input
                             type="password"
                             id="password"
@@ -97,11 +97,12 @@ const Login = () => {
                             className={!dark ? "custom-input-dark lg:w-64" : "custom-input lg:w-64"}
                         />
                     </label>
-                    <button type="submit" className={!dark ? 'self-end mt-10 text-3xl text-marron hover:underline' : 'self-end mt-10 text-3xl text-amarillo-claro hover:underline'}>
+                    <p className='self-center mt-5 text-sm'>required*</p>
+                    <button type="submit" className={!dark ? 'self-end mt-5 text-3xl text-marron hover:underline' : 'self-end mt-5 text-3xl text-amarillo-claro hover:underline'}>
                         Send
-                    </button> 
+                    </button>                    
                 </div>
-            </fieldset>
+            </fieldset>            
         </form>
     </main>
   )

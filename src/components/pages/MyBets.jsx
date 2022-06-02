@@ -65,7 +65,7 @@ const MyBets = () => {
                   <td>{row.horse_name}</td>
                   <td>{row.date}</td>
                   {windowWidth >= 1250 && <td>{row.time}</td>}
-                  {windowWidth >= 500 && <td>{row.bet_amount} €</td>}                  
+                  {windowWidth >= 500 && <td>{row.bet_amount} €</td>}
                   <td>
                   {
                     row.win === null

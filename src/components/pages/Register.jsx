@@ -125,7 +125,7 @@ const Register = () => {
                 }
                 <div className='flex flex-col items-end'>
                     <label htmlFor="username" className='mb-3'>
-                        Username
+                        Username*
                         <input
                             type="text"
                             id="username"
@@ -136,7 +136,7 @@ const Register = () => {
                         />
                     </label>
                     <label htmlFor="nif" className='mb-3'>
-                        NIF
+                        NIF*
                         <input
                             type="text"
                             id="nif"
@@ -147,7 +147,7 @@ const Register = () => {
                         />
                     </label>
                     <label htmlFor="email" className='mb-3'>
-                        Email
+                        Email*
                         <input
                             type="email"
                             id="email"
@@ -158,7 +158,7 @@ const Register = () => {
                         />
                     </label>
                     <label htmlFor="password" className='mb-3'>
-                        Password
+                        Password*
                         <input
                             type="password"
                             id="password"
@@ -169,7 +169,7 @@ const Register = () => {
                         />
                     </label>
                     <label htmlFor="confirm" className='mb-3'>
-                        Confirm
+                        Confirm*
                         <input
                             type="password"
                             id="confirm"
@@ -180,7 +180,7 @@ const Register = () => {
                         />
                     </label>
                     <label htmlFor="birth" className='mb-3'>
-                        Birth date
+                        Birth date*
                         <input
                             type="date"
                             id="birth"
@@ -191,7 +191,7 @@ const Register = () => {
                         />
                     </label>
                     <label htmlFor="image">
-                        NIF Image
+                        NIF Image*
                         <input
                             type="file"
                             id="image"
@@ -203,10 +203,11 @@ const Register = () => {
                             }
                         />
                     </label>
+                    <p className='self-center mt-5 text-sm'>required*</p>
                     <button type="submit" className={
                         !dark
-                        ? 'self-end mt-10 text-3xl text-marron hover:underline'
-                        : 'self-end mt-10 text-3xl text-amarillo-claro hover:underline'
+                        ? 'self-end mt-5 text-3xl text-marron hover:underline'
+                        : 'self-end mt-5 text-3xl text-amarillo-claro hover:underline'
                     }>
                         Send
                     </button>

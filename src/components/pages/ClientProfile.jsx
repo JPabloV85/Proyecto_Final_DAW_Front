@@ -10,7 +10,7 @@ const ClientProfile = () => {
     const [mounted, setMounted] = React.useState(false);
     const [username, setUsername] = React.useState("");
     const [email, setEmail] = React.useState("");
-    const [nif, setNif] = React.useState("");
+    const [password, setPassword] = React.useState("");
     const [submitted, setSubmitted] = React.useState(false);
     const [{clientBalance, setClientBalance}, {windowWidth, setWindowWidth}, {dark, setDark}] = React.useContext(MyContext);
     const token = localStorage.getItem("access_token");
@@ -28,7 +28,7 @@ const ClientProfile = () => {
             setResponse(data);
             setUsername(data.user.username);
             setEmail(data.user.email);
-            setNif(data.cif);
+            setPassword(data.user.password);
             fetch(`http://127.0.0.1:5000/static/images/${data.image}`, {
                 headers:{
                     Authorization: 'Bearer ' + token
@@ -70,11 +70,8 @@ const ClientProfile = () => {
             if (e.message === "UNIQUE constraint failed: user.username") {
                 setError("USERNAME ALREADY IN USE.");
             }
-            if (e.message === "UNIQUE constraint failed: client.cif") {
-                setError("NIF ALREADY IN USE.");
-            }
             if (e.message === "UNIQUE constraint failed: user.email") {
-                setError("E-MAIL LAREADY IN USE.");
+                setError("E-MAIL ALREADY IN USE.");
             }
         });
     }
@@ -88,8 +85,8 @@ const ClientProfile = () => {
             setError("Field Email cannot be empty.");
             return false;
         }
-        if (!data.get("nif").trim()) {
-            setError("Field NIF cannot be empty.");
+        if (!data.get("password").trim()) {
+            setError("Field Password cannot be empty.");
             return false;
         }        
         setError(null);
@@ -168,14 +165,14 @@ const ClientProfile = () => {
                                 className="custom-input invert-0 lg:w-64"
                             />
                         </label>
-                        <label htmlFor="nif">
-                            NIF
+                        <label htmlFor="password">
+                            Password
                             <input
-                                type="text"
-                                id="nif"
-                                name="nif"
-                                value={nif}
-                                onChange={(e) => setNif(e.target.value)}
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 className="custom-input invert-0 lg:w-64"
                             />
                         </label>
@@ -230,14 +227,14 @@ const ClientProfile = () => {
                                     className="custom-input invert-0 lg:w-64"
                                 />
                             </label>
-                            <label htmlFor="nif">
-                                NIF
+                            <label htmlFor="password">
+                                Password
                                 <input
-                                    type="text"
-                                    id="nif"
-                                    name="nif"
-                                    value={nif}
-                                    onChange={(e) => setNif(e.target.value)}
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     className="custom-input invert-0 lg:w-64"
                                 />
                             </label>
