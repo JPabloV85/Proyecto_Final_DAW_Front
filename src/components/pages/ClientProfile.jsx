@@ -28,7 +28,7 @@ const ClientProfile = () => {
             setResponse(data);
             setUsername(data.user.username);
             setEmail(data.user.email);
-            setPassword(data.user.password);
+            setPassword(data.user.hashed_password);
             fetch(`http://127.0.0.1:5000/static/images/${data.image}`, {
                 headers:{
                     Authorization: 'Bearer ' + token
@@ -47,6 +47,7 @@ const ClientProfile = () => {
             console.log(error);
         });
     }, [token, submitted])
+    
 
     const submit = (e) => {
         e.preventDefault();
