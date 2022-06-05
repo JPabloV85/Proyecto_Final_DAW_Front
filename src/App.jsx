@@ -47,8 +47,8 @@ function App() {
     : <div id='page' className='flex flex-col w-screen h-screen'>
       {
         currentPath == "/" && (
-          <div className='rotateY -z-10 absolute w-full h-full overflow-hidden'>        
-            <video autoPlay loop muted className="min-w-max min-h-max absolute right-20 bottom-1">/
+          <div className='rotateY -z-10 absolute w-full h-full overflow-hidden bg-marron'>        
+            <video autoPlay loop muted className="min-w-max min-h-max absolute right-0 bottom-0">/
               <source src={videoMp4} type="video/mp4" />
               <source src={videoWebm} type="video/webm" />
               Your browser does not support the video tag.
