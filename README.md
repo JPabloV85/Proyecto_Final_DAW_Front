@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Winning Horse
+## *Proyecto Final de Ciclo DAW 2020-2022*
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+El proyecto despliega una *interfaz frontend* que permite al usuario interactuar con la aplicación desarrollada para el *Proyecto Fin de Ciclo de Desarrollo de Aplicaciones Web*, elaborado por el alumno *José Pablo Vázquez García*, que consiste en una herramienta de gestión de carreras y apuestas ecuestres.
 
-## Available Scripts
+En el proyecto se ha hecho uso de diversas herramientas aportadas por el framework **React**, como pueden ser los *hooks de estado*, *props* y uso de *componentes*. Además, se han utilizado algunas *librerías* para el desarrollo de utilidades y del diseño, en concreto **Tailwind.css**.
 
-In the project directory, you can run:
+La aplicación consta, además, de una *API Rest* desarrollada en Python bajo el framework **Flask** que sirve los datos a través de peticiones *HTTP*. Esta API Rest puede descargarse desde el siguiente repositorio de **GitHub**:
 
-### `npm start`
+[Enlace a API Rest](https://github.com/JPabloV85/Proyecto_Final_DAW.git)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Arranque del proyecto con Docker
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Arrancar la herramienta **Docker**
+2. Descargar el archivo *docker-compose.yml*.
+3. Abrir un terminal y ubicarse en el directorio donde se haya almacenado el archivo.
+4. Ejecutar el comando **docker compose up**.
 
-### `npm test`
+### Alternativa de arranque
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Descargar o clonar la API Rest.
+2. Descargar o clonar la aplicación cliente.
+3. En un terminal ubicado en el directorio del proyecto *frontend*, ejecutar el comando **npm install** (instalación de dependencias).
+4. Una vez completado el paso anterior, ejecutar el comando **npm run start**
+5. En un terminal diferente ubicado en el directorio de la API Rest, ejecutar el comando **flask run**
 
-### `npm run build`
+### Acceso a la interfaz del cliente
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Abrir [http://localhost:3000](http://localhost:3000) para visualizar en el navegador.
+- Las credenciales para la conexión con una cuenta de cliente de prueba son:
+    - Username: pablo
+    - Password: alberti
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Acceso a la interfaz del servidor
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Abrir [http://localhost:5000](http://localhost:5000) para visualizar en el navegador.
+- Las credenciales para la conexión con una cuenta de administrador de prueba son:
+    - Username: pedro
+    - Password: alberti
